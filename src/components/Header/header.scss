@@ -1,0 +1,35 @@
+@import '../../style/main.scss';
+
+.header {
+  margin: 0 auto;
+  max-width: 1200px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 54px;
+  color: $secondary-800;
+  >span {
+    color: $primary-300;
+  }
+}
+
+.group {
+  font-size: 0px;
+}
+
+.secondary {
+  margin-right: 20px;
+  padding: 10px 48px;
+  @include button;
+}
+
+.primary {
+  padding: 10px 40px;
+  @include button;
+}

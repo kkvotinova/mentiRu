@@ -1,3 +1,138 @@
-.example {
-  color: magenta;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+body {
+  font-style: normal;
+  font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+// ? color
+$base-900: #000000;
+$base-400: #9D9D9D;
+$base-0: #FFFFFF;
+
+$error-900: #C8000F;
+$error-100: #FFCCD2;
+
+$success-900: #246B00;
+$success-100: #DEEDBF;
+
+$waiting-900: #F76B12;
+$waiting-100: #FEEAB3;
+
+$primary-900: #000FA9;
+$primary-700: #0031CE;
+$primary-400: #0961F5;
+$primary-300: #597EF7;
+$primary-200: #91A2F8;
+$primary-100: #91A2F8;
+$primary-50: #E6E9FE;
+
+$secondary-900: #1A2451;
+$secondary-800: #253368;
+$secondary-400: #576798;
+$secondary-200: #9AA4C2;
+$secondary-100: #C1C8DB;
+$secondary-50: #E7E9F0;
+
+// ? pattern
+@mixin button {
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 27px;
+
+  &.primary {
+    color: $base-0;
+    border-radius: 8px;
+    background-color: $primary-300;
+    &:hover {
+      background-color: $primary-400;
+    }
+    &:active {
+      background-color: $primary-700;
+    }
+    &:disabled {
+      background-color: $primary-100;
+    }
+  }
+
+  &.secondary {
+    border-radius: 8px;
+    color: $primary-300;
+    background-color: $base-0;
+    border: 1px solid $primary-300;
+    &:hover {
+      color: $primary-400;
+      border-color: $primary-400;
+    }
+    &:active {
+      color: $primary-700;
+      border-color: $primary-700;
+    }
+    &:disabled {
+      color: $primary-100;
+      border-color: $primary-100;
+    }
+  }
+
+  &.text {
+    color: $primary-300;
+    background-color: $base-0;
+    &:hover {
+      color: $primary-400;
+    }
+    &:active {
+      color: $primary-700;
+    }
+    &:disabled {
+      color: $primary-100;
+    }
+  }
+}
+
+@mixin input {
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+  border-radius: 8px;
+  background-color: $base-0;
+  border: 1px solid $primary-300;
+  &::placeholder {
+    color: $secondary-200;
+  }
+  &:hover {
+    background-color: $primary-50;
+  }
+  &:focus {
+    outline: none;
+    background-color: $base-0;
+    border-color: $primary-900;
+  }
 }
