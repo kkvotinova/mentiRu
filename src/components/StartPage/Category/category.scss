@@ -1,0 +1,36 @@
+@import '../../../style/main.scss';
+
+.category {
+  margin-bottom: 7%;
+  width: 228px;
+  border-radius: 14px;
+  background-color: $base-0;
+  box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.15);
+  &:hover {
+    background-color: $primary-50;
+  }
+  &:active {
+    & > a {
+      color: $base-0;
+      & > svg path {
+        stroke: $base-0;
+      }
+    }
+    background-color: $primary-300;
+  }
+}
+
+.link {
+  height: 235px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+  & > span {
+    margin-top: 18%;
+  }
+}

@@ -101,7 +101,8 @@ $secondary-50: #E7E9F0;
     }
   }
 
-  &.text {
+  &.text,
+  &.forgot {
     color: $primary-300;
     background-color: $base-0;
     &:hover {
@@ -117,6 +118,7 @@ $secondary-50: #E7E9F0;
 }
 
 @mixin input {
+  margin: 0;
   font-weight: 300;
   font-size: 18px;
   line-height: 27px;

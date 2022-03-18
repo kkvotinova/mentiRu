@@ -1,0 +1,72 @@
+@import '../../../../style/main.scss';
+
+.item {
+  & > a {
+    display: flex;
+  }
+  &:hover {
+    .name {
+      color: $primary-400;
+    }
+  }
+  &:active {
+    .name {
+      color: $primary-700;
+    }
+  }
+  &:not(:last-child) {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $secondary-100;
+  }
+}
+
+.avatar {
+  margin-right: 14px;
+  width: 124px;
+  height: 146px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.name {
+  margin-bottom: 4px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  color: $base-900;
+}
+
+.job {
+  margin-bottom: 26px;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.infoItem {
+  &:not(:last-child) {
+    margin-right: 32px;
+  }
+}
+
+.title {
+  margin-bottom: 4px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 21px;
+  color: $secondary-400;
+}
+
+.desc {
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 24px;
+  color: $base-900;
+}

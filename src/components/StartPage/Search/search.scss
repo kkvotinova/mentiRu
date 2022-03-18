@@ -1,0 +1,40 @@
+@import '../../../style/main.scss';
+
+.section {
+  width: 100%;
+  font-size: 0;
+  margin-bottom: 110px;
+}
+
+.logo {
+  margin: 0 auto;
+  display: block;
+  width: 80%;
+}
+
+.search {
+  height: 60px;
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.15);
+}
+
+.input {
+  padding-left: 16px;
+  height: 100%;
+  width: 82%;
+  @include input;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border: none;
+}
+
+.primary {
+  height: 100%;
+  width: 18%;
+  @include button;
+  &.primary {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+}

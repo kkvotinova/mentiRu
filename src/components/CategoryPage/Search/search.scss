@@ -1,0 +1,44 @@
+@import '../../../style/main.scss';
+
+.section {
+  margin: 0 auto;
+  margin-bottom: 100px;
+  max-width: 863px;
+  font-size: 0;
+}
+
+.header {
+  margin-bottom: 40px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  text-align: center;
+  color: $secondary-900;
+}
+
+.group {
+  padding: 5px;
+  height: 70px;
+  border-radius: 12px;
+  box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.15);
+}
+
+.input {
+  width: 80%;
+  padding: 0 10px;
+  height: 60px;
+  @include input;
+  border: none;
+  &:hover {
+    background-color: $base-0;
+  }
+}
+
+.primary {
+  width: 20%;
+  height: 60px;
+  @include button;
+  &.primary {
+    border-radius: 12px;
+  }
+}

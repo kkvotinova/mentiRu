@@ -1,0 +1,37 @@
+@import '../../../style/main.scss';
+
+.filter {
+  width: 25%;
+}
+
+.header {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  border-bottom: 1px solid $secondary-200;
+  & > h3 {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 42px;
+    color: $secondary-900;
+  }
+}
+
+.text {
+  padding: 4px;
+  @include button;
+}
+
+.item {
+  margin-bottom: 16px;
+  padding-left: 32px;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: $base-900;
+  cursor: pointer;
+  background-size: 24px;
+  background-position: left center;
+  background-repeat: no-repeat;
+}

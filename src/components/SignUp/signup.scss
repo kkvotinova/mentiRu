@@ -1,0 +1,27 @@
+@import '../../style/main.scss';
+
+.main {
+  margin: 0 auto;
+  margin-bottom: 30px;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logo {
+  width: 40%;
+}
+
+.registration {
+  margin-left: 50px;
+}
+
+.header {
+  margin: 0;
+  margin-bottom: 28px;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 54px;
+  color: $secondary-900;
+}

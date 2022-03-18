@@ -1,0 +1,17 @@
+@import '../../../style/main.scss';
+
+.label {
+  margin-bottom: 8px;
+  display: block;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+}
+
+.input {
+  @include input;
+  // margin-bottom: 22px;
+  padding: 9px 10px;
+  width: 350px;
+}

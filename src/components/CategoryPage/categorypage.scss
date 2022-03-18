@@ -1,0 +1,16 @@
+@import '../../style/main.scss';
+
+.main {
+  margin: 0 auto;
+  margin-top: 30px;
+  max-width: 1200px;
+  min-height: calc(100vh - (144px + 130px));
+}
+
+.section {
+  max-width: 1200px;
+  margin-bottom: 100px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
