@@ -1,0 +1,25 @@
+@import '../../style/main.scss';
+
+.main {
+  margin: 0 auto;
+  max-width: 896px;
+  min-height: calc(100vh - (144px + 100px));
+}
+
+.section {
+  margin-bottom: 80px;
+  & > h2 {
+    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 48px;
+    color: $secondary-900;
+  }
+  & > p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 32px;
+    text-align: justify;
+    color: $base-900;
+  }
+}
