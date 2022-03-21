@@ -1,0 +1,44 @@
+@import '../../../style/main.scss';
+
+.modal {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+  background-color: rgba($color: #000000, $alpha: .6);
+}
+
+.show {
+  z-index: 1;
+  opacity: 1;
+}
+
+.window {
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background-color: $base-0;
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 42px;
+  color: $secondary-900;
+}
+
+.group {
+  align-self: flex-end;
+  & > button {
+    padding: 10px 40px;
+    @include button;
+  }
+}

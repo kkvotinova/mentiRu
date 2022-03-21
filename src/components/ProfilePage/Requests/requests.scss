@@ -1,0 +1,41 @@
+@import '../../../style/main.scss';
+
+.section {
+  margin-bottom: 70px;
+  & > h2 {
+    margin-bottom: 24px;
+    font-size: 36px;
+    color: $secondary-900;
+    font-size: 32px;
+    font-weight: 500;
+    line-height: 48px;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse:collapse;
+}
+
+.tr {
+  border-bottom: 1px solid $secondary-100;
+}
+
+.td {
+  padding-bottom: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: $base-900;
+}
+
+.name {
+  padding-bottom: 10px;
+  padding-left: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  color: $base-900;
+}

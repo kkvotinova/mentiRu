@@ -1,0 +1,47 @@
+@import '../../../../style/main.scss';
+
+.td {
+  padding: 10px 0;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+  border-bottom: 1px solid $secondary-50;
+  &.status {
+    padding-right: 30px;
+    display: flex;
+    justify-content: space-between;
+  }
+  &.name {
+    padding-left: 30px;
+  }
+}
+
+.accept {
+  padding: 6px 12px;
+  border-radius: 16px;
+  color: $success-900;
+  background-color: $success-100;
+}
+.decline {
+  padding: 6px 12px;
+  border-radius: 16px;
+  color: $error-900;
+  background-color: $error-100;
+}
+
+.cancel {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  &:hover {
+    & > svg path {
+      fill: $error-600;
+    }
+  }
+  &:active {
+    & > svg path {
+      fill: $error-900;
+    }
+  }
+}

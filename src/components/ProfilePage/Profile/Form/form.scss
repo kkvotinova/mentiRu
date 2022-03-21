@@ -1,0 +1,10 @@
+@import '../../../../style/main.scss';
+
+.list {
+  margin-bottom: 26px;
+}
+
+.primary {
+  padding: 8px 32px;
+  @include button;
+}

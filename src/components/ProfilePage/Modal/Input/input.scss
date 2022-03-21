@@ -1,0 +1,45 @@
+@import '../../../../style/main.scss';
+
+.group {
+  margin-bottom: 30px;
+}
+
+.item,
+.left,
+.right {
+  display: flex;
+  flex-direction: column;
+  & > label {
+    margin-bottom: 8px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: $base-900;
+  }
+  & > input, textarea {
+    padding: 10px;
+    @include input;
+  }
+  & > textarea {
+    resize: none;
+    height: 100px;
+  }
+}
+
+.item {
+  &.double {
+    flex-direction: row;
+  }
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.left {
+  margin-right: 60px;
+}
+
+.left,
+.right {
+  width: 280px;
+}

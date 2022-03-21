@@ -36,9 +36,13 @@ $base-400: #9D9D9D;
 $base-0: #FFFFFF;
 
 $error-900: #C8000F;
+$error-800: #D61B1D;
+$error-600: #F5222D;
 $error-100: #FFCCD2;
 
 $success-900: #246B00;
+$success-800: #4C8D17;
+$success-600: #76B52B;
 $success-100: #DEEDBF;
 
 $waiting-900: #F76B12;
@@ -46,6 +50,7 @@ $waiting-100: #FEEAB3;
 
 $primary-900: #000FA9;
 $primary-700: #0031CE;
+$primary-600: #003CDC;
 $primary-400: #0961F5;
 $primary-300: #597EF7;
 $primary-200: #91A2F8;
@@ -98,6 +103,30 @@ $secondary-50: #E7E9F0;
     &:disabled {
       color: $primary-100;
       border-color: $primary-100;
+    }
+  }
+
+  &.accept {
+    color: $base-0;
+    border-radius: 8px;
+    background-color: $success-600;
+    &:hover {
+      background-color: $success-800;
+    }
+    &:active {
+      background-color: $success-900;
+    }
+  }
+
+  &.decline {
+    color: $base-0;
+    border-radius: 8px;
+    background-color: $error-600;
+    &:hover {
+      background-color: $error-800;
+    }
+    &:active {
+      background-color: $error-900;
     }
   }
 
