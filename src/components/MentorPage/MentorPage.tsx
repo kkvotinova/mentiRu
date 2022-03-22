@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import styles from './mentorpage.scss';
-import { Header } from '../Header';
-import { Footer } from '../Footer';
 import { Profile } from './Profile';
 import { Competencies } from './Competencies';
 import { Modal } from './Modal';
@@ -71,7 +69,6 @@ export function MentorPage() {
 
   return (
     <>
-      <Header isGroup={true} isAuto={true}/>
       <main className={styles.main}>
         <Profile onChange={onChange} {...MENTOR_INFO}/>
         <section className={styles.section}>
@@ -80,8 +77,7 @@ export function MentorPage() {
         </section>
         <Competencies {...MENTOR_INFO.competence}/>
       </main>
-      <Footer />
-      <Modal isShow={modal} onChange={onChange}/>
+      {modal ? <Modal onChange={onChange}/> : null}
     </>
   );
 }

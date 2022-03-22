@@ -35,7 +35,7 @@ const INPUT_CONTENT: IContentInput[] = [
 export function SignUp() {
   return (
     <>
-      <Header isGroup={true}/>
+      <Header/>
       <main className={styles.main}>
         <img className={styles.logo} src={logo} alt="signup" />
         <div className={styles.registration}>

@@ -2,13 +2,12 @@ import React, { useEffect } from 'react';
 import styles from './modal.scss';
 
 interface IContentProps {
-  isShow: boolean;
   onChange: (item: boolean) => void;
 }
 
-export function Modal({isShow, onChange}: IContentProps) {
+export function Modal({onChange}: IContentProps) {
   return (
-    <div onClick={() => onChange(false)} className={`${styles.modal} ${isShow ? styles.show : null}`}>
+    <div onClick={() => onChange(false)} className={styles.modal}>
       <form onClick={(e) => e.stopPropagation()} className={styles.window}>
         <h3 className={styles.heading}>New request</h3>
         <ul className={styles.group}>
@@ -18,7 +17,7 @@ export function Modal({isShow, onChange}: IContentProps) {
           </li>
           <li className={styles.item}>
             <label htmlFor="description">Description</label>
-            <textarea name="description" id="description" placeholder="Description" required></textarea>
+            <textarea name="description" id="description" placeholder="Description" minLength={50} required></textarea>
           </li>
         </ul>
         <div className={styles.button}>

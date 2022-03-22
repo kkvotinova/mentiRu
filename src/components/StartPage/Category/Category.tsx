@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './category.scss';
 
 interface IContentProps {
@@ -10,10 +11,10 @@ interface IContentProps {
 export function Category({svg, link, name}: IContentProps) {
   return (
     <li className={styles.category}>
-      <a className={styles.link} href={link}>
+      <Link className={styles.link} to={link}>
         {svg}
         <span>{name}</span>
-      </a>
+      </Link>
     </li>
   );
 }

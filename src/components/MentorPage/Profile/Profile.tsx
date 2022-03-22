@@ -17,7 +17,7 @@ interface IItemInfo {
 export function Profile({name, job, info, onChange}: IMentorInfo) {
   return (
     <section className={styles.section}>
-      <img className={styles.avatar} src={avatar} alt="avatar" />
+      <img className={styles.avatar} src={`/${avatar}`} alt="avatar" />
       <div>
         <h1 className={styles.name}>{name}</h1>
         <div className={styles.job}>{job}</div>

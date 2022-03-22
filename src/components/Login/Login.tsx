@@ -24,7 +24,7 @@ const INPUT_CONTENT: IContentInput[] = [
 export function Login() {
   return (
     <>
-      <Header isGroup={true}/>
+      <Header/>
       <main className={styles.main}>
         <img className={styles.logo} src={login} alt="login" />
         <div className={styles.authorization}>

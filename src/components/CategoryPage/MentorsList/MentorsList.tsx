@@ -8,6 +8,7 @@ interface IItemInfo {
 }
 
 interface IMentorInfo {
+  id: number;
   name: string;
   job: string;
   info: IItemInfo[];
@@ -15,6 +16,7 @@ interface IMentorInfo {
 
 const MENTOR_LIST: IMentorInfo[] = [
   {
+    id: 937563,
     name: 'Nikita Sobolev',
     job: 'CTO @ wemake.services',
     info: [
@@ -33,6 +35,7 @@ const MENTOR_LIST: IMentorInfo[] = [
     ]
   },
   {
+    id: 136549,
     name: 'Nikita Sobolev',
     job: 'CTO @ wemake.services',
     info: [
@@ -56,7 +59,7 @@ export function MentorsList() {
   return (
     <div className={styles.mentors}>
       <ul>
-        {MENTOR_LIST.map((item, id) => <MentorItem key={id} {...item}/>)}
+        {MENTOR_LIST.map(item => <MentorItem key={item.id} {...item}/>)}
       </ul>
     </div>
   );

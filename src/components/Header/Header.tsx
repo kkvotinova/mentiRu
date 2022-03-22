@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './header.scss';
 import bell from '../../resources/svg/bell.svg';
+import { Link } from 'react-router-dom';
 import signout from '../../resources/svg/signout.svg';
 import user from '../../resources/svg/user.svg';
 import avatar from '../../resources/avatar.jpeg';
@@ -10,11 +11,11 @@ interface IContentProps {
   isAuto?: boolean;
 }
 
-export function Header({isGroup, isAuto}: IContentProps) {
+export function Header({isGroup = false, isAuto = false}: IContentProps) {
   return (
     <header className={styles.header}>
-      <a href='/' className={styles.logo}>menti<span>Ru</span></a>
-      {!isGroup ? <Group /> : null}
+      <Link to='/' className={styles.logo}>menti<span>Ru</span></Link>
+      {isGroup ? <Group /> : null}
       {isAuto ? <AutoGroup /> : null}
     </header>
   );
@@ -37,8 +38,8 @@ const AutoGroup = () => {
         </svg>
         {isOpen ? (
           <ul className={styles.list}>
-            <li><a style={{ backgroundImage: 'url(' + user + ')'}} href="#">Profile</a></li>
-            <li><a style={{ backgroundImage: 'url(' + signout + ')'}} href="#">Log out</a></li>
+            <li><Link style={{ backgroundImage: 'url(' + user + ')'}} to="/profile">Profile</Link></li>
+            <li><Link style={{ backgroundImage: 'url(' + signout + ')'}} to="/">Log out</Link></li>
           </ul>
         ) : null}
       </button>
@@ -49,8 +50,8 @@ const AutoGroup = () => {
 const Group = () => {
   return (
     <div className={styles.group}>
-      <a href="/login" className={styles.secondary}>Log in</a>
-      <a href="/signup" className={styles.primary}>Sign up</a>
+      <Link to="/login" className={styles.secondary}>Log in</Link>
+      <Link to="/signup" className={styles.primary}>Sign up</Link>
     </div>
   );
 }

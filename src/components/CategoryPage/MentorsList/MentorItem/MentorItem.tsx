@@ -1,20 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './mentoritem.scss';
 import avatar from '../../../../resources/avatar.jpeg';
 
 interface IContentProps {
+  id: number;
   name: string;
   job: string;
   info: IItemInfo[];
 }
 
 export function MentorItem(props: IContentProps) {
-  const {name, job, info} = props;
+  const {name, job, info, id} = props;
 
   return (
     <li className={styles.item}>
-      <a href="#">
-        <img className={styles.avatar} src={avatar} alt="avatar" />
+      <Link to={`/mentor/${id}`}>
+        <img className={styles.avatar} src={`/${avatar}`} alt="avatar" />
         <div>
           <h4 className={styles.name}>{name}</h4>
           <div className={styles.job}>{job}</div>
@@ -22,7 +24,7 @@ export function MentorItem(props: IContentProps) {
             {info.map((item, id) => <InfoItem key={id} {...item}/>)}
           </ul>
         </div>
-      </a>
+      </Link>
     </li>
   );
 }
