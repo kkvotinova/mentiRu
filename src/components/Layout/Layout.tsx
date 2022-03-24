@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
+import { AuthContext } from '../../context';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
-import styles from './layout.scss';
 
 export function Layout() {
+  const {isAuth} = useContext(AuthContext);
+
   return (
     <>
-      <Header isGroup={true}/>
+      <Header isGroup={true} isAuth={isAuth}/>
       <Outlet />
       <Footer />
     </>

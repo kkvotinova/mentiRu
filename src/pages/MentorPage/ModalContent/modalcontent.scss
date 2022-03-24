@@ -1,0 +1,42 @@
+@import '../../../style/main.scss';
+
+.group {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  & > label {
+    margin-bottom: 8px;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 27px;
+    color: $base-900;
+  }
+  & > input {
+    padding: 10px;
+    @include input;
+    width: 280px;
+  }
+  & > textarea {
+    padding: 10px;
+    resize: none;
+    width: 400px;
+    height: 155px;
+    @include input;
+  }
+  &:first-child {
+    margin-bottom: 24px;
+  }
+}
+
+.button {
+  align-self: flex-end;
+  & > button {
+    padding: 10px 40px;
+    @include button;
+  }
+}
