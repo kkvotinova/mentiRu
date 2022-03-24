@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './input.scss';
+import styles from './modalcontent.scss';
 
-export function Input() {
+export function ModalContent() {
   return (
     <ul className={styles.group}>
       <li className={styles.item}>

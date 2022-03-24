@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Modal } from './Modal';
+import { Modal } from '../../components/Modal';
 import { Profile } from './Profile/Profile';
-import styles from './profilepage.scss';
 import { Requests } from './Requests';
 import { ResumeList } from './ResumeList';
+import styles from './profilepage.scss';
+import { ModalContent } from './ModalContent';
 
 export function ProfilePage() {
   const [modal, setModal] = useState(false);
@@ -19,7 +20,11 @@ export function ProfilePage() {
         <ResumeList onChange={onChange}/>
         <Requests />
       </main>
-      <Modal isShow={modal} onChange={onChange}/>
+      {modal ? <Modal
+                  onChange={onChange}
+                  children={<ModalContent/>}
+                  heading={'Create resume'}/>
+              : null}
     </>
   );
 }

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import styles from './mentorpage.scss';
 import { Profile } from './Profile';
 import { Competencies } from './Competencies';
-import { Modal } from './Modal';
+import { Modal } from '../../components/Modal';
+import { ModalContent } from './ModalContent';
 
 interface IMentorInfo {
   name: string;
@@ -77,7 +78,11 @@ export function MentorPage() {
         </section>
         <Competencies {...MENTOR_INFO.competence}/>
       </main>
-      {modal ? <Modal onChange={onChange}/> : null}
+      {modal ? <Modal
+                  onChange={onChange}
+                  children={<ModalContent/>}
+                  heading={'New request'}/>
+              : null}
     </>
   );
 }

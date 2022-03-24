@@ -15,5 +15,5 @@ npm run dev
 
 ### Production mode
 ```
-npm run build:prod || npm run build:dev
+npm run build:prod
 ```
