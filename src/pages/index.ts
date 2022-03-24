@@ -5,6 +5,5 @@ import { CategoryPage } from "./CategoryPage";
 import { MentorPage } from "./MentorPage";
 import { ProfilePage } from "./ProfilePage";
 import { Layout } from "../components/Layout";
-import { NotFoundPage } from "./NotFoundPage";
 
-export { StartPage, Login, SignUp, CategoryPage, MentorPage, ProfilePage, Layout, NotFoundPage };
+export { StartPage, Login, SignUp, CategoryPage, MentorPage, ProfilePage, Layout };

@@ -16,7 +16,7 @@ export function MentorItem(props: IContentProps) {
   return (
     <li className={styles.item}>
       <Link to={`/mentor/${id}`}>
-        <img className={styles.avatar} src={`/${avatar}`} alt="avatar" />
+        <img className={styles.avatar} src={avatar} alt="avatar" />
         <div>
           <h4 className={styles.name}>{name}</h4>
           <div className={styles.job}>{job}</div>

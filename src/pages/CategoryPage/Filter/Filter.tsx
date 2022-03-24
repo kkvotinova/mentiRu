@@ -56,7 +56,7 @@ const FilterItem = ({item, onChangeList}: IContentProps) => {
   return (
     <li
       onClick={() => onChangeList({name, isMarked: !isMarked})}
-      style={{backgroundImage: 'url(' + `/${isMarked ? checkboxMarked : checkbox}` + ')'}}
+      style={{backgroundImage: 'url(' + `${isMarked ? checkboxMarked : checkbox}` + ')'}}
       className={styles.item} >
       {name}</li>
   );

@@ -62,27 +62,23 @@ const MENTOR_INFO: IMentorInfo = {
 };
 
 export function MentorPage() {
-  const [modal, setModal] = useState(false);
-
-  const onChange = (item: boolean) => {
-    setModal(item);
-  }
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <main className={styles.main}>
-        <Profile onChange={onChange} {...MENTOR_INFO}/>
+        <Profile setShowModal={setShowModal} {...MENTOR_INFO}/>
         <section className={styles.section}>
           <h2>About me</h2>
           <p>{MENTOR_INFO.about}</p>
         </section>
         <Competencies {...MENTOR_INFO.competence}/>
       </main>
-      {modal ? <Modal
-                  onChange={onChange}
-                  children={<ModalContent/>}
-                  heading={'New request'}/>
-              : null}
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        children={<ModalContent/>}
+        heading={'New request'}/>
     </>
   );
 }

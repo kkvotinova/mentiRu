@@ -7,24 +7,20 @@ import styles from './profilepage.scss';
 import { ModalContent } from './ModalContent';
 
 export function ProfilePage() {
-  const [modal, setModal] = useState(false);
-
-  const onChange = (item: boolean) => {
-    setModal(item);
-  }
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <>
       <main className={styles.main}>
         <Profile/>
-        <ResumeList onChange={onChange}/>
+        <ResumeList setShowModal={setShowModal}/>
         <Requests />
       </main>
-      {modal ? <Modal
-                  onChange={onChange}
-                  children={<ModalContent/>}
-                  heading={'Create resume'}/>
-              : null}
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        children={<ModalContent/>}
+        heading={'Create resume'}/>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import { ResumeItem } from './ResumeItem';
 import styles from './resumelist.scss';
 
@@ -22,10 +22,10 @@ const RESUME_LIST: IResumeItem[] = [
 ];
 
 interface IContentProp {
-  onChange:(item: boolean) => void;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-export function ResumeList({onChange}: IContentProp) {
+export function ResumeList({setShowModal}: IContentProp) {
   const [resume, setResume] = useState(RESUME_LIST);
 
   const deleteResume = (id: number) => {
@@ -36,7 +36,7 @@ export function ResumeList({onChange}: IContentProp) {
     <section className={styles.section}>
       <div className={styles.heading}>
         <h2>My resume</h2>
-        <button onClick={() => onChange(true)} className={styles.edit}>
+        <button onClick={() => setShowModal(true)} className={styles.edit}>
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <g clipPath="url(#clip0_126_947)">
                 <path d="M18.656 0.930011L6.46402 13.122C5.99836 13.5852 5.6292 14.1361 5.3779 14.7429C5.1266 15.3496 4.99817 16.0002 5.00002 16.657V18C5.00002 18.2652 5.10538 18.5196 5.29291 18.7071C5.48045 18.8947 5.7348 19 6.00002 19H7.34302C7.99978 19.0019 8.65039 18.8734 9.25718 18.6221C9.86396 18.3708 10.4149 18.0017 10.878 17.536L23.07 5.34401C23.6544 4.75818 23.9826 3.96449 23.9826 3.13701C23.9826 2.30954 23.6544 1.51584 23.07 0.930011C22.4757 0.361905 21.6852 0.0448608 20.863 0.0448608C20.0409 0.0448608 19.2503 0.361905 18.656 0.930011ZM21.656 3.93001L9.46402 16.122C8.90015 16.6824 8.13803 16.9979 7.34302 17H7.00002V16.657C7.0021 15.862 7.31759 15.0999 7.87802 14.536L20.07 2.34401C20.2836 2.13997 20.5676 2.0261 20.863 2.0261C21.1584 2.0261 21.4424 2.13997 21.656 2.34401C21.866 2.55453 21.9839 2.8397 21.9839 3.13701C21.9839 3.43432 21.866 3.7195 21.656 3.93001Z" fill="#597EF7"/>
