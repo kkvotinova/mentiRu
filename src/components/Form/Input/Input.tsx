@@ -1,21 +1,36 @@
-import React from 'react';
+import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
 import styles from './input.scss';
 
-interface IContentInput {
+interface IFormInput {
   label: string;
   type: string;
+  value: string;
 }
 
 interface IContentProps {
-  input: IContentInput;
+  formInput: IFormInput;
+  onValueChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export function Input({input}: IContentProps) {
-  const {label, type} = input;
+export function Input({formInput, onValueChange}: IContentProps) {
+  const {label, type, value} = formInput;
+
   return (
     <>
-      <label className={styles.label} htmlFor={label.split(' ').join('-')}>{label}</label>
-      <input className={styles.input} id={label.split(' ').join('-')} required={true} type={type} />
+      <label
+        htmlFor={label.split(' ').join('-')}
+        className={styles.label}>
+        {label}</label>
+      <input
+        className={styles.input}
+        id={label.split(' ').join('-')}
+        required={true}
+        name={type}
+        type={type}
+        value={value}
+        placeholder={label}
+        onChange={(e) => onValueChange(e)}
+      />
     </>
   );
 }
