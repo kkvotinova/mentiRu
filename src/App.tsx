@@ -1,16 +1,15 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthContext } from './context';
 import {
   StartPage, Login, SignUp, CategoryPage,
   MentorPage, ProfilePage, Layout } from './pages'
-import './style/main.scss';
 
 export function App() {
-  const [isAuth, setIsAuth] = React.useState(false);
-  const [isLoading, setLoading] = React.useState(true);
+  const [isAuth, setIsAuth] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (localStorage.getItem('auth')) {
       setIsAuth(true);
     }

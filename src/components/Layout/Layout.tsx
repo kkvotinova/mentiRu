@@ -9,7 +9,9 @@ export function Layout() {
 
   return (
     <>
-      <Header isGroup={true} isAuth={isAuth}/>
+      <Header
+        isGroup={true}
+        isAuth={isAuth}/>
       <Outlet />
       <Footer />
     </>

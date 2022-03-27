@@ -17,7 +17,11 @@ export function Input({label, type, value, onChange}: IContentInput) {
   return (
     <li className={styles.item}>
       <label htmlFor={label.split(' ').join('-')}>{label}</label>
-      <input onChange={(e) => inputChange(e)} id={label.split(' ').join('-')} type={type} defaultValue={value}/>
+      <input
+        onChange={(e) => inputChange(e)}
+        id={label.split(' ').join('-')}
+        type={type}
+        defaultValue={value}/>
     </li>
   );
 }

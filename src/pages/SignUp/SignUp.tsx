@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './signup.scss';
 import { Header } from '../../components/Header';
-import logo from '../../resources/signup.png';
 import { Form } from '../../components/Form';
+import logo from '../../resources/signup.png';
 
 interface IContentInput {
   label: string;
@@ -50,27 +50,3 @@ export function SignUp() {
     </>
   );
 }
-
-/*   <main class="main">
-    <img class="main-logo" src="/src/img/registration.png" alt="registration">
-    <div class="registration">
-      <h1 class="registration-header">Registration</h1>
-      <form class="registration-form">
-        <label for="first_name">First name</label>
-        <input required id="first_name" type="text" placeholder="First name">
-        <label for="last_name">Last name</label>
-        <input required id="last_name" type="text" placeholder="Last name">
-        <label for="email">Email</label>
-        <input required id="email" type="email" placeholder="Email">
-        <label for="password">Password</label>
-        <input required id="password" type="text" placeholder="Password">
-        <label for="confirm-password">Confirm password</label>
-        <input required id="confirm-password" type="text" placeholder="Confirm password">
-        <button class="primary" type="submit" disabled>Sign up</button>
-        <div class="registration-form_footer">
-          <span>Already a member?</span>
-          <button class="text">Log in</button>
-        </div>
-      </form>
-    </div>
-  </main> */

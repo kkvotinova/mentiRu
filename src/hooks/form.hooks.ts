@@ -19,8 +19,8 @@ export const useForm = (inputs: IContentInput[]) => {
   }
 
   const {setIsAuth} = useContext(AuthContext);
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const submit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     setIsAuth(true);
     localStorage.setItem('auth', 'true');
   }
@@ -28,6 +28,7 @@ export const useForm = (inputs: IContentInput[]) => {
   return { submit, formInput, onValueChange }
 }
 
+// ? Interface
 interface IContentInput {
   label: string;
   type: string;
@@ -41,7 +42,7 @@ export interface IContentProps {
   forgot?: boolean;
 }
 
-interface IFormInput {
+export interface IFormInput {
   label: string;
   type: string;
   value: string;

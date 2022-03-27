@@ -1,11 +1,6 @@
-import React, { ChangeEvent, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { ChangeEvent } from 'react';
 import styles from './input.scss';
-
-interface IFormInput {
-  label: string;
-  type: string;
-  value: string;
-}
+import { IFormInput } from '../../../hooks/form.hooks'
 
 interface IContentProps {
   formInput: IFormInput;

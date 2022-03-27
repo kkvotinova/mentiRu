@@ -1,0 +1,116 @@
+@import '../../../style/main.scss';
+
+.autoGroup {
+  display: flex;
+  align-items: center;
+}
+
+.bell {
+  position: relative;
+  margin-right: 46px;
+  background-color: transparent;
+  & > span {
+    position: absolute;
+    padding: 2px 4px;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+    color: $base-0;
+    background-color: $error-900;
+  }
+}
+
+.user {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  & > img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+  }
+}
+
+.span {
+  margin: 0 10px;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: $secondary-900;
+  &:hover {
+    color: $primary-400;
+    & + svg path {
+      fill: $primary-400;
+    }
+  }
+  &:active {
+    color: $primary-700;
+    & + svg path {
+      fill: $primary-700;
+    }
+  }
+}
+
+.open {
+  &:hover {
+    color: $secondary-900;
+    & + svg path {
+      fill: $primary-700;
+    }
+  }
+  & + svg path {
+    fill: $primary-700;
+  }
+}
+
+.list {
+  position: absolute;
+  right: 0;
+  bottom: -80px;
+  border-radius: 6px;
+  background-color: $base-0;
+  box-shadow: 0px 8px 24px rgba(129, 135, 189, 0.15);
+  & > li {
+    padding: 8px 14px;
+    &:first-child {
+      padding-right: 24px;
+    }
+    & > a {
+      padding-left: 32px;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+      color: $base-900;
+      background-position: left center;
+      background-size: 20px;
+      background-repeat: no-repeat;
+    }
+    &:hover {
+      &:first-child {
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+      }
+      &:last-child {
+        border-end-start-radius: 6px;
+        border-end-end-radius: 6px;
+      }
+      background-color: $primary-50;
+    }
+  }
+  visibility: hidden;
+  opacity: 0;
+  transition: all .15s;
+}
+
+.show {
+visibility: visible;
+opacity: 1;
+}

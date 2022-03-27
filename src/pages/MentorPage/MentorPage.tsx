@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import styles from './mentorpage.scss';
 import { Profile } from './Profile';
 import { Competencies } from './Competencies';
 import { Modal } from '../../components/Modal';
 import { ModalContent } from './ModalContent';
+import { AuthContext } from '../../context';
+
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css'
 
 interface IMentorInfo {
   name: string;
@@ -63,6 +67,7 @@ const MENTOR_INFO: IMentorInfo = {
 
 export function MentorPage() {
   const [showModal, setShowModal] = useState(false);
+  const {isLoading} = useContext(AuthContext);
 
   return (
     <>
@@ -70,7 +75,7 @@ export function MentorPage() {
         <Profile setShowModal={setShowModal} {...MENTOR_INFO}/>
         <section className={styles.section}>
           <h2>About me</h2>
-          <p>{MENTOR_INFO.about}</p>
+          {isLoading ? <Skeleton count={10}/> : <p>{MENTOR_INFO.about}</p>}
         </section>
         <Competencies {...MENTOR_INFO.competence}/>
       </main>

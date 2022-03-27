@@ -116,6 +116,9 @@ $secondary-50: #E7E9F0;
     &:active {
       background-color: $success-900;
     }
+    &:disabled {
+      background-color: $success-100;;
+    }
   }
 
   &.decline {
@@ -127,6 +130,9 @@ $secondary-50: #E7E9F0;
     }
     &:active {
       background-color: $error-900;
+    }
+    &:disabled {
+      background-color: $error-100;;
     }
   }
 

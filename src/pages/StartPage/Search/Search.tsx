@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './search.scss';
 import logo from '../../../resources/start.png';
 
 export function Search() {
+  const [block, setBlock] = useState(true)
+
   return (
     <section className={styles.section}>
-      <img className={styles.logo} src={logo} alt="start" />
+      {block ? <div className={styles.block}></div> : null}
+      <img
+        onLoad={() => setBlock(false)}
+        className={styles.logo}
+        src={logo}
+        alt="start" />
       <div className={styles.search}>
         <input
             type="text"
