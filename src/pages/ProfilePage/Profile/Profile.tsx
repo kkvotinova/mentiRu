@@ -1,13 +1,16 @@
-import React, { useContext } from 'react';
-import styles from './profile.scss';
-import avatar from '../../../resources/avatar.jpeg';
+import React from 'react';
 import { Form } from './Form';
-import { AuthContext } from '../../../context';
+import { IState } from '../../../reducers';
+import { useSelector } from 'react-redux';
+import avatar from '../../../resources/avatar.jpeg';
+import styles from './profile.scss';
+
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export function Profile() {
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <section className={styles.section}>

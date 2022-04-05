@@ -1,10 +1,12 @@
-import React, { useContext, useState } from 'react';
-import styles from './mentorpage.scss';
+import React, { useState } from 'react';
 import { Profile } from './Profile';
 import { Competencies } from './Competencies';
 import { Modal } from '../../components/Modal';
 import { ModalContent } from './ModalContent';
-import { AuthContext } from '../../context';
+import { useSelector } from 'react-redux';
+import { IState } from '../../reducers';
+import { ICompetencies } from './Competencies/CompetenceItem';
+import styles from './mentorpage.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -20,11 +22,6 @@ interface IMentorInfo {
 interface IItemInfo {
   title: 'Experience' | 'Price (per hour)' | 'Received help';
   desc: string;
-}
-
-interface ICompetencies {
-  skill: number;
-  name: string;
 }
 
 const MENTOR_INFO: IMentorInfo = {
@@ -47,19 +44,19 @@ const MENTOR_INFO: IMentorInfo = {
   ],
   competence: [
     {
-      skill: 9,
+      skill: 'good',
       name: 'Python'
     },
     {
-      skill: 7,
+      skill: 'average',
       name: 'Django'
     },
     {
-      skill: 6,
+      skill: 'average',
       name: 'TypeScript'
     },
     {
-      skill: 5,
+      skill: 'bad',
       name: 'GitHub Actions'
     },
   ]
@@ -67,7 +64,8 @@ const MENTOR_INFO: IMentorInfo = {
 
 export function MentorPage() {
   const [showModal, setShowModal] = useState(false);
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <>

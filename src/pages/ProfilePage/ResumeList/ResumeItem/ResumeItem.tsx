@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
-import { AuthContext } from '../../../../context';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../../reducers';
 import styles from './resumeitem.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -15,7 +16,8 @@ interface IContentProps {
 
 export function ResumeItem({name, desc, id, deleteResume}: IContentProps) {
   const [isFull, setIsFull] = useState(false);
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <li className={styles.item}>

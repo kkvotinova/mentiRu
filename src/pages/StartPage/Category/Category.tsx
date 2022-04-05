@@ -1,6 +1,7 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../context';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../reducers';
 import styles from './category.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -13,7 +14,8 @@ interface IContentProps {
 }
 
 export function Category({svgIcon: svg, link, name}: IContentProps) {
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <li className={styles.category}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FilterItem, IFilterItem } from './FilterItem';
 import styles from './filter.scss';
 

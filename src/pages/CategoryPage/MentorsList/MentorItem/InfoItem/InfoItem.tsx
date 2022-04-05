@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../../../reducers';
 import styles from './infoitem.scss';
-import { AuthContext } from '../../../../../context';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -11,7 +12,8 @@ export interface IItemInfo {
 }
 
 export function InfoItem({title, desc}: IItemInfo) {
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   if (isLoading) {
     return (

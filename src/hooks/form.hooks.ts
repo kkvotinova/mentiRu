@@ -1,5 +1,6 @@
 import { useState, ChangeEvent, useContext, FormEvent } from "react";
-import { AuthContext } from "../context";
+import { useDispatch } from "react-redux";
+import { userLogIn } from "../actions";
 
 export const useForm = (inputs: IContentInput[]) => {
   const [formInput, setFormInput] = useState<Array<IFormInput>>(
@@ -18,10 +19,10 @@ export const useForm = (inputs: IContentInput[]) => {
     }));
   }
 
-  const {setIsAuth} = useContext(AuthContext);
+  const dispatch = useDispatch();
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsAuth(true);
+    dispatch(userLogIn());
     localStorage.setItem('auth', 'true');
   }
 

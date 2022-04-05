@@ -1,8 +1,8 @@
 import React from 'react';
 import { Header } from '../../components/Header';
-import styles from './login.scss';
-import login from '../../resources/login.png';
 import { Form } from '../../components/Form';
+import login from '../../resources/login.png';
+import styles from './login.scss';
 
 interface IContentInput {
   label: string;

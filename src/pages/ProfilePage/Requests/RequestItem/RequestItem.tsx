@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { CancelIcon } from '../../../../components/icons';
-import { AuthContext } from '../../../../context';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../../reducers';
 import styles from './requestitem.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -16,7 +17,8 @@ interface IContentProps {
 
 export function RequestItem({id, name, category, status, deleteRequest}: IContentProps) {
   const chipsStatus = status === 'Accept' ? styles.accept : styles.decline;
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <tr>

@@ -1,8 +1,9 @@
-import React, { Dispatch, SetStateAction, useContext } from 'react';
-import styles from './profile.scss';
-import avatar from '../../../resources/avatar.jpeg';
+import React, { Dispatch, SetStateAction } from 'react';
 import { ProfileItem, IItemInfo } from './ProfileItem';
-import { AuthContext } from '../../../context';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../reducers';
+import avatar from '../../../resources/avatar.jpeg';
+import styles from './profile.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -15,7 +16,8 @@ interface IMentorInfo {
 }
 
 export function Profile({name, job, info, setShowModal}: IMentorInfo) {
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <section className={styles.section}>

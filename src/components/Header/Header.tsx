@@ -5,8 +5,8 @@ import { ButtonGroup } from './ButtonGroup';
 import styles from './header.scss';
 
 interface IContentProps {
-  isGroup?: boolean;
-  isAuth?: boolean;
+  readonly isGroup?: boolean;
+  readonly isAuth?: boolean;
 }
 
 export function Header(props: IContentProps) {
@@ -14,9 +14,11 @@ export function Header(props: IContentProps) {
 
   return (
     <header className={styles.header}>
-      <Link to='/' className={styles.logo}>menti<span>Ru</span></Link>
-        {(isGroup && !isAuth) ? <ButtonGroup /> : null}
-        {isAuth ? <AutoGroup /> : null}
+      <Link to='/' className={styles.logo}>
+        menti<span>Ru</span>
+      </Link>
+      {isGroup ? <ButtonGroup /> : null}
+      {isAuth ? <AutoGroup /> : null}
     </header>
   );
 }

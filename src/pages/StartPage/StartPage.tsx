@@ -3,7 +3,8 @@ import { Category } from './Category';
 import { Search } from './Search';
 import styles from './startpage.scss';
 import {
-  BackendIcon, FrontendIcon, AndroidIcon, DevopsIcon, DesignIcon, IosIcon
+  BackendIcon, FrontendIcon, AndroidIcon,
+  DevopsIcon, DesignIcon, IosIcon
 } from '../../components/icons';
 
 interface ICategory {

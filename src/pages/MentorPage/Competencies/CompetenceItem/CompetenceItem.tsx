@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../../context';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../../reducers';
 import styles from './competenceitem.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export interface ICompetencies {
-  skill: number;
+  skill: 'good' | 'average' | 'bad';
   name: string;
 }
 
 export function CompetenceItem({skill, name}: ICompetencies) {
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   if (isLoading) {
     return (
@@ -19,11 +21,10 @@ export function CompetenceItem({skill, name}: ICompetencies) {
     );
   }
 
-  const className = skill > 7 ? styles.good : skill > 5 ? styles.average : styles.bad ;
+  const className = skill === 'good' ? styles.good : skill === 'average' ? styles.average : styles.bad ;
   return (
     <li className={className}>
-      <span className={styles.skill}>{skill}</span>
-      <span>{name}</span>
+      {name}
     </li>
   )
 }

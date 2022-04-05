@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import styles from './form.scss';
-import { Input } from './Input';
+import { Link, useNavigate } from 'react-router-dom';
 import { IContentProps, useForm } from '../../hooks/form.hooks'
+import { Input } from './Input';
+import styles from './form.scss';
 
 export function Form(props: IContentProps) {
   const {inputs, primaryText, btnText, spanText, forgot = false} = props;
   const {submit, formInput, onValueChange} = useForm(inputs);
+  const navigate = useNavigate();
 
-  const button = forgot ? <button className={styles.forgot}>Forgot password?</button> : null;
   return (
     <form onSubmit={submit}>
       <div className={styles.form}>
@@ -18,12 +18,14 @@ export function Form(props: IContentProps) {
             formInput={item}
             onValueChange={onValueChange} />
         ))}
-        {button}
+        {forgot ? <button className={styles.forgot}>Forgot password?</button> : null}
       </div>
       <button
         className={styles.primary}
-        type='submit'>
-        {primaryText}</button>
+        type='submit'
+        onClick={() => navigate(-1)}>
+        {primaryText}
+        </button>
       <div>
         <span className={styles.span}>{spanText}</span>
         <Link

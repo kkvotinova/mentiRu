@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from './mentoritem.scss';
-import avatar from '../../../../resources/avatar.jpeg';
+import { useSelector } from 'react-redux';
+import { IState } from '../../../../reducers';
 import { IItemInfo, InfoItem } from './InfoItem';
-import { AuthContext } from '../../../../context';
+import avatar from '../../../../resources/avatar.jpeg';
+import styles from './mentoritem.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -17,7 +18,8 @@ export interface IContentProps {
 
 export function MentorItem(props: IContentProps) {
   const {name, job, info, id} = props;
-  const {isLoading} = useContext(AuthContext);
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
   return (
     <li className={styles.item}>

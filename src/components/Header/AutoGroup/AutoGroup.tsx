@@ -1,8 +1,11 @@
-import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../context';
+import React, { useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronIcon } from '../../icons';
+import { userLogOut } from '../../../actions';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../../../reducers';
 import styles from './autogroup.scss';
+
 import bell from '../../../resources/svg/bell.svg';
 import signout from '../../../resources/svg/signout.svg';
 import user from '../../../resources/svg/user.svg';
@@ -13,11 +16,16 @@ import 'react-loading-skeleton/dist/skeleton.css'
 
 export function AutoGroup() {
   const [isOpen, setIsOpen] = useState(false);
-  const {setIsAuth, isLoading} = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const isLoading = 'loading' === loadingStatus;
 
+  const navigate = useNavigate();
+  const location = useLocation();
   const onLogout = () => {
-    setIsAuth(false);
-    localStorage.removeItem('auth')
+    dispatch(userLogOut());
+    localStorage.removeItem('auth');
+    (location.pathname === '/profile') ? navigate(-1) : navigate(0);
   }
 
   return (
@@ -41,11 +49,10 @@ export function AutoGroup() {
                 to="/profile">
                 Profile</Link>
           </li>
-          <li><Link
-                onClick={onLogout}
-                style={{ backgroundImage: 'url(' + signout + ')'}}
-                to="/">
-                Log out</Link>
+          <li><a
+            onClick={onLogout}
+            style={{ backgroundImage: 'url(' + signout + ')'}}>
+            Log out</a>
           </li>
         </ul>
       </button>
