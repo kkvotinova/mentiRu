@@ -19,6 +19,7 @@ export function App() {
     dispatch(dataFetched());
   });
 
+
   return(
     <Routes>
       <Route path='/' element={<Layout />}>

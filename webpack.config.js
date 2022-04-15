@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
-        use: ['ts-loader']
+        use: ['cache-loader', 'ts-loader']
       },
       {
         test: /\.css$/i,
@@ -42,6 +42,7 @@ module.exports = {
         test: /\.scss$/i,
         use: [
           'style-loader',
+          'cache-loader',
           {
             loader: 'css-loader',
             options: {
@@ -57,7 +58,7 @@ module.exports = {
       },
       {
         test: GLOBAL_SCSS_REGEXP,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: ['style-loader', 'cache-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
