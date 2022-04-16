@@ -27,3 +27,52 @@
 .authorization {
   margin-right: 110px;
 }
+
+.span {
+  display: inline-block;
+  margin-right: 18px;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-400;
+}
+
+.text {
+  @include button;
+}
+
+.form {
+  margin-bottom: 36px;
+  & > div > p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: $error-600;
+  }
+}
+
+.forgot {
+  display: block;
+  @include button;
+}
+
+.primary {
+  margin-bottom: 18px;
+  padding: 10px 40px;
+  @include button;
+}
+
+.label {
+  margin-bottom: 8px;
+  display: block;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 27px;
+  color: $base-900;
+}
+
+.input {
+  @include input;
+  padding: 9px 10px;
+  width: 350px;
+}
