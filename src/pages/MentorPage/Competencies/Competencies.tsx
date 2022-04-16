@@ -1,10 +1,6 @@
 import React from 'react';
+import { CompetenceItem, ICompetencies } from './CompetenceItem';
 import styles from './competencies.scss';
-
-interface ICompetencies {
-  skill: number;
-  name: string;
-}
 
 export function Competencies(data: ICompetencies[]) {
   return (
@@ -15,14 +11,4 @@ export function Competencies(data: ICompetencies[]) {
       </ul>
     </section>
   );
-}
-
-const CompetenceItem = ({skill, name}: ICompetencies) => {
-  const className = skill > 7 ? styles.good : skill > 5 ? styles.average : styles.bad ;
-  return (
-    <li className={className}>
-      <span className={styles.skill}>{skill}</span>
-      <span>{name}</span>
-    </li>
-  )
 }

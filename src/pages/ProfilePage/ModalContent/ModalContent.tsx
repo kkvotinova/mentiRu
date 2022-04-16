@@ -22,9 +22,18 @@ export function ModalContent() {
         <label htmlFor="about_me">About me</label>
         <textarea id="about_me" placeholder="About me" required minLength={100}/>
       </li>
+      <li className={styles.heading}>Competencies</li>
       <li className={styles.item}>
-        <label htmlFor="competencies">Competencies</label>
-        <textarea id="competencies" placeholder="Competencies" required/>
+        <label htmlFor="good">Good</label>
+        <input id="good" type="text" placeholder="Java, Python, PHP" required/>
+      </li>
+      <li className={styles.item}>
+        <label htmlFor="average">Average</label>
+        <input id="average" type="text" placeholder="Java, Python, PHP" required/>
+      </li>
+      <li className={styles.item}>
+        <label htmlFor="bad">Bad</label>
+        <input id="bad" type="text" placeholder="Java, Python, PHP" required/>
       </li>
     </ul>
   );

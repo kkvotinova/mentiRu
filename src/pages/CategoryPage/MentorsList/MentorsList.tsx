@@ -1,18 +1,6 @@
 import React from 'react';
-import { MentorItem } from './MentorItem';
+import { MentorItem, IContentProps as IMentorInfo } from './MentorItem';
 import styles from './mentorslist.scss';
-
-interface IItemInfo {
-  title: string;
-  desc: string;
-}
-
-interface IMentorInfo {
-  id: number;
-  name: string;
-  job: string;
-  info: IItemInfo[];
-}
 
 const MENTOR_LIST: IMentorInfo[] = [
   {

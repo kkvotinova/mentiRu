@@ -1,0 +1,16 @@
+@import '../.././../../style/main.scss';
+
+.good {
+  color: $success-900;
+  background-color: $success-100;
+}
+
+.bad {
+  color: $error-900;
+  background-color: $error-100;
+}
+
+.average {
+  color: $waiting-900;
+  background-color: $waiting-100;
+}

@@ -1,0 +1,17 @@
+@import '../../../style/main.scss';
+
+.group {
+  font-size: 0px;
+  display: flex;
+}
+
+.secondary {
+  margin-right: 20px;
+  padding: 10px 48px;
+  @include button;
+}
+
+.primary {
+  padding: 10px 40px;
+  @include button;
+}
