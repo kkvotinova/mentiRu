@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronIcon } from '../../icons';
-import { userLogOut } from '../../../actions';
+import { userLogOut } from '../../../store/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState } from '../../../reducers';
+import { IState } from '../../../store/reducers';
 import styles from './autogroup.scss';
 
 import bell from '../../../resources/svg/bell.svg';

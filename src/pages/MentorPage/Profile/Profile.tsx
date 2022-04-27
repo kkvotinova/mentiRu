@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { ProfileItem, IItemInfo } from './ProfileItem';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../reducers';
+import { IState } from '../../../store/reducers';
 import avatar from '../../../resources/avatar.jpeg';
 import styles from './profile.scss';
 

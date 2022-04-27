@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../reducers';
+import { IState } from '../../../store/reducers';
 import styles from './category.scss';
 
 import Skeleton from 'react-loading-skeleton';

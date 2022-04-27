@@ -1,7 +1,7 @@
 import React from 'react';
 import { CancelIcon } from '../../../../components/icons';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../reducers';
+import { IState } from '../../../../store/reducers';
 import styles from './requestitem.scss';
 
 import Skeleton from 'react-loading-skeleton';

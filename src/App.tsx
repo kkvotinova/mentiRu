@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { dataFetched, userLogIn } from './actions';
-import { IState } from './reducers';
+import { IState } from './store/reducers';
 import {
   StartPage, Login, SignUp, CategoryPage,
   MentorPage, ProfilePage, Layout
 } from './pages'
+import { userLogIn } from './store/actions';
 
 export function App() {
   const isAuth = useSelector((state: IState) => state.isAuth);
@@ -33,3 +33,7 @@ export function App() {
     </Routes>
   );
 }
+function dataFetched(): any {
+  throw new Error('Function not implemented.');
+}
+

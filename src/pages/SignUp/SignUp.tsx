@@ -3,7 +3,7 @@ import { Header } from '../../components/Header';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { userLogIn } from '../../actions';
+import { userLogIn } from '../../store/actions';
 import logo from '../../resources/signup.png';
 import styles from './signup.scss';
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../reducers';
+import { IState } from '../../../../store/reducers';
 import styles from './resumeitem.scss';
 
 import Skeleton from 'react-loading-skeleton';

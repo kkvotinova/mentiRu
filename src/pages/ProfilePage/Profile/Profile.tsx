@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form } from './Form';
-import { IState } from '../../../reducers';
+import { IState } from '../../../store/reducers';
 import { useSelector } from 'react-redux';
 import avatar from '../../../resources/avatar.jpeg';
 import styles from './profile.scss';

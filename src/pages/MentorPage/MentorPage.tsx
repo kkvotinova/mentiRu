@@ -4,7 +4,7 @@ import { Competencies } from './Competencies';
 import { Modal } from '../../components/Modal';
 import { ModalContent } from './ModalContent';
 import { useSelector } from 'react-redux';
-import { IState } from '../../reducers';
+import { IState } from '../../store/reducers';
 import { ICompetencies } from './Competencies/CompetenceItem';
 import styles from './mentorpage.scss';
 

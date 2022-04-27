@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
-import { IState } from '../../reducers';
+import { IState } from '../../store/reducers';
 import { Footer } from '../Footer';
 import { Header } from '../Header';
 

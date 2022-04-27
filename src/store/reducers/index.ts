@@ -5,7 +5,7 @@ const initialState: IState = {
   loadingStatus: 'loading',
 }
 
-export const reducer: Reducer = <P>(state: IState = initialState, action: IAction<P>) => {
+export const reducer: Reducer = <P>(state = initialState, action: IAction<P>): IState => {
   switch (action.type) {
     case 'USER_LOGIN':
       return {
@@ -16,22 +16,6 @@ export const reducer: Reducer = <P>(state: IState = initialState, action: IActio
       return {
         ...state,
         isAuth: false,
-      };
-    case 'DATA_FETCHING':
-      return {
-        ...state,
-        loadingStatus: 'loading',
-      };
-    case 'DATA_FETCHED':
-      return {
-        ...state,
-        heroes: action.payload,
-        loadingStatus: 'idle',
-      };
-    case 'DATA_FETCHING_ERROR':
-      return {
-        ...state,
-        loadingStatus: 'error',
       };
     default:
       return state;

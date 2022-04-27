@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../reducers';
+import { IState } from '../../../../store/reducers';
 import { IItemInfo, InfoItem } from './InfoItem';
 import avatar from '../../../../resources/avatar.jpeg';
 import styles from './mentoritem.scss';
