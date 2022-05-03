@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../store/reducers';
+import { IState } from '../../../store';
 import styles from './category.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -14,7 +14,7 @@ interface IContentProps {
 }
 
 export function Category({svgIcon: svg, link, name}: IContentProps) {
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   return (

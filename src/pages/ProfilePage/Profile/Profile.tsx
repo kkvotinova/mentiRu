@@ -1,16 +1,16 @@
 import React from 'react';
 import { Form } from './Form';
-import { IState } from '../../../store/reducers';
 import { useSelector } from 'react-redux';
-import avatar from '../../../resources/avatar.jpeg';
+import { IState } from '../../../store';
 import styles from './profile.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 
 export function Profile() {
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
-  const isLoading = 'loading' === loadingStatus;
+  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const userInfo = useSelector((state: IState) => state.user.userInfo);
+  const isLoading = 'loading' === userLoadingStatus;
 
   return (
     <section className={styles.section}>
@@ -18,7 +18,7 @@ export function Profile() {
       <div className={styles.info}>
         <div className={styles.left}>
           {isLoading ? <Skeleton height="100%" containerClassName={styles.avatar} /> :
-            <img className={styles.avatar} src={avatar} alt="avatar" />
+            <img className={styles.avatar} src={userInfo.avatar} alt="avatar" />
           }
           <button disabled={isLoading} className={styles.text}>Upload new photo</button>
         </div>

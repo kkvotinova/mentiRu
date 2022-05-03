@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { ProfileItem, IItemInfo } from './ProfileItem';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../store/reducers';
+import { IState } from '../../../store';
 import avatar from '../../../resources/avatar.jpeg';
 import styles from './profile.scss';
 
@@ -16,7 +16,7 @@ interface IMentorInfo {
 }
 
 export function Profile({name, job, info, setShowModal}: IMentorInfo) {
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   return (

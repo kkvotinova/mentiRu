@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../store/reducers';
 import styles from './resumeitem.scss';
+import { IState } from '../../../../store';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -16,7 +16,7 @@ interface IContentProps {
 
 export function ResumeItem({name, desc, id, deleteResume}: IContentProps) {
   const [isFull, setIsFull] = useState(false);
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   return (

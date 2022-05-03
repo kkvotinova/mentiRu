@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ChevronIcon } from '../../icons';
-import { userLogOut } from '../../../store/actions';
+import { userLogOut } from '../../../store/actions/user';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState } from '../../../store/reducers';
+import { IState } from '../../../store';
 import styles from './autogroup.scss';
 
 import bell from '../../../resources/svg/bell.svg';
 import signout from '../../../resources/svg/signout.svg';
 import user from '../../../resources/svg/user.svg';
-import avatar from '../../../resources/avatar.jpeg';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -17,15 +16,15 @@ import 'react-loading-skeleton/dist/skeleton.css'
 export function AutoGroup() {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
-  const isLoading = 'loading' === loadingStatus;
+  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const userInfo = useSelector((state: IState) => state.user.userInfo);
+  const isLoading = 'loading' === userLoadingStatus;
 
-  const navigate = useNavigate();
-  const location = useLocation();
   const onLogout = () => {
     dispatch(userLogOut());
     localStorage.removeItem('auth');
-    (location.pathname === '/profile') ? navigate(-1) : navigate(0);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
   }
 
   return (
@@ -33,14 +32,14 @@ export function AutoGroup() {
       {isLoading ? <Skeleton style={{marginRight: 46, height: 34, width: 34}}/> :
         <Link to="/profile" className={styles.bell}>
           <img src={bell} alt="bell" />
-          <span>4</span>
+          {userInfo.cvs.length ? <span>{userInfo.cvs.length}</span> : null}
         </Link>
       }
       <button onClick={() => setIsOpen(!isOpen)} className={styles.user}>
-        {isLoading ? <Skeleton circle height={34} width={34}/> : <img src={avatar} alt="avatar" />}
+        {isLoading ? <Skeleton circle height={34} width={34}/> : <img src={userInfo.avatar} alt="avatar" />}
         <span
           className={`${styles.span} ${isOpen ? styles.open : null}`}>
-          {isLoading ? <Skeleton width={120}/> : "Nikita Sobolev"}
+          {isLoading ? <Skeleton width={120}/> : userInfo.firstName + ' ' + userInfo.lastName}
         </span>
         <ChevronIcon />
         <ul className={`${styles.list} ${isOpen ? styles.show : null}`}>
@@ -49,8 +48,7 @@ export function AutoGroup() {
                 to="/profile">
                 Profile</Link>
           </li>
-          <li><a
-            onClick={onLogout}
+          <li onClick={onLogout}><a
             style={{ backgroundImage: 'url(' + signout + ')'}}>
             Log out</a>
           </li>

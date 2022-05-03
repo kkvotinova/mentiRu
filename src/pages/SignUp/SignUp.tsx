@@ -1,11 +1,12 @@
 import React from 'react';
 import { Header } from '../../components/Header';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { userLogIn } from '../../store/actions';
 import logo from '../../resources/signup.png';
 import styles from './signup.scss';
+import { userSignUp } from '../../store/actions/user';
+import { IState } from '../../store';
 
 interface IContentInput {
   firstName: string;
@@ -14,10 +15,11 @@ interface IContentInput {
   password: string;
   confirmPassword: string;
   match: string;
+  emailExist : string;
 };
 
 export function SignUp() {
-  const navigate = useNavigate();
+  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const dispatch = useDispatch();
   const {
     register, formState: {errors}, handleSubmit, setError, clearErrors
@@ -30,10 +32,7 @@ export function SignUp() {
       });
       return;
     }
-    navigate(-1);
-    dispatch(userLogIn());
-    localStorage.setItem('auth', 'true');
-    // console.log(JSON.stringify(data));
+    dispatch(userSignUp(data));
   }
 
   return (
@@ -73,6 +72,7 @@ export function SignUp() {
                 type="email" />
               <div style={{height: 22}}>
                 {errors.email && <p>{errors.email.message || "Invalid email"}</p>}
+                {(userLoadingStatus === 'error') && !errors.email ? <p>User already exists with such email</p> : null}
               </div>
               <label className={styles.label}>Password</label>
               <input

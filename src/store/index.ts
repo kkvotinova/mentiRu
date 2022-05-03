@@ -1,10 +1,13 @@
-import { createStore, Store } from 'redux';
-import { IState, reducer } from './reducers';
-import { composeWithDevTools } from '@redux-devtools/extension';
+import { userReducer } from './reducers/user';
+import { IUserState } from './reducers/user/type';
+import { configureStore } from '@reduxjs/toolkit';
 
-const store: Store<IState> = createStore(
-  reducer,
-  composeWithDevTools()
-);
+export interface IState {
+  user: IUserState
+}
+export const store = configureStore({
+  reducer: {user: userReducer},
+  devTools: process.env.NODE_ENV !== 'production'
+});
 
 export default store;
