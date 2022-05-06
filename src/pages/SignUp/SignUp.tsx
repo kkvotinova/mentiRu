@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import logo from '../../resources/signup.png';
-import styles from './signup.scss';
 import { userSignUp } from '../../store/actions/user';
 import { IState } from '../../store';
+import styles from './signup.scss';
 
 interface IContentInput {
   firstName: string;

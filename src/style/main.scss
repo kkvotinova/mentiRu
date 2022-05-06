@@ -83,6 +83,7 @@ $secondary-50: #E7E9F0;
       background-color: $primary-700;
     }
     &:disabled {
+      cursor: not-allowed;
       background-color: $primary-100;
     }
   }
@@ -101,6 +102,7 @@ $secondary-50: #E7E9F0;
       border-color: $primary-700;
     }
     &:disabled {
+      cursor: not-allowed;
       color: $primary-100;
       border-color: $primary-100;
     }
@@ -117,7 +119,8 @@ $secondary-50: #E7E9F0;
       background-color: $success-900;
     }
     &:disabled {
-      background-color: $success-100;;
+      cursor: not-allowed;
+      background-color: $success-100;
     }
   }
 
@@ -132,7 +135,8 @@ $secondary-50: #E7E9F0;
       background-color: $error-900;
     }
     &:disabled {
-      background-color: $error-100;;
+      cursor: not-allowed;
+      background-color: $error-100;
     }
   }
 
