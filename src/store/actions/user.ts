@@ -1,5 +1,5 @@
 import { Dispatch } from "redux";
-import { API_URL, headersCors } from "../../api";
+import { headersCors } from "../../api";
 import {
   IUserInfo, UserActions, IUserDataFetched, IUserDataFetchingError,
   IUserDataFetching, IUserForm, IUserLogIn, IUserLogOut, IBDGetMe } from "../reducers/user/type";
@@ -15,7 +15,7 @@ export const userDataFetched = (data: IUserInfo): IUserDataFetched => ({
 
 export const userSignIn = (data: Pick<IUserForm, 'email' | 'password'>) => (dispatch: Dispatch<any>) => {
   dispatch(userDataFetching());
-  fetch(`${API_URL}/auth/login`, {
+  fetch("/api/v1/auth/login", {
     method: 'POST',
     headers: headersCors,
     body: JSON.stringify({
@@ -44,7 +44,7 @@ export const userSignIn = (data: Pick<IUserForm, 'email' | 'password'>) => (disp
 
 export const userSignUp = (data: IUserForm) => (dispatch: Dispatch<any>) => {
   dispatch(userDataFetching());
-  fetch(`${API_URL}/auth/registration`, {
+  fetch("/api/v1/auth/registration", {
     method: 'POST',
     headers: headersCors,
     body: JSON.stringify({
@@ -70,7 +70,7 @@ export const userSignUp = (data: IUserForm) => (dispatch: Dispatch<any>) => {
 export const userGetInfo = () => (dispatch: Dispatch<any>) => {
   const accessToken = String(localStorage.getItem('accessToken'));
   dispatch(userDataFetching());
-  fetch(`${API_URL}/user/get_me`, {
+  fetch("/api/v1/user/get_me", {
     method: 'GET',
     headers: {
       'Authorization': accessToken
@@ -102,9 +102,10 @@ export const userGetInfo = () => (dispatch: Dispatch<any>) => {
 export const userUpdateInfo = (data: Omit<IUserInfo, 'cvs' | 'avatar'>) => (dispatch: Dispatch<any>) => {
   const accessToken = String(localStorage.getItem('accessToken'));
   dispatch(userDataFetching());
-  fetch(`${API_URL}/user/update_me`, {
+  fetch("/api/v1/user/update_me", {
     method: 'POST',
     headers: {
+      ...headersCors,
       'Authorization': accessToken
     },
     body: JSON.stringify({

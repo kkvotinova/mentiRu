@@ -1,5 +1,4 @@
 import { Dispatch } from "redux";
-import { API_URL } from "../../api";
 import { ICategoriesFetched, ICategoriesFetching, ICategories, ICategoriesFetchingError, CategoriesActions } from "../reducers/categories/type";
 
 export const categoriesFetching  = (): ICategoriesFetching => ({type: CategoriesActions.CATEGORIES_FETCHING})
@@ -11,7 +10,7 @@ export const categoriesFetched = (payload: ICategories[]): ICategoriesFetched =>
 
 export const getCategories = () => (dispatch: Dispatch<any>) => {
   dispatch(categoriesFetching());
-  fetch(`${API_URL}/categories/get_categories`)
+  fetch("/api/v1/categories/get_categories")
     .then((response: Response) => {
       if (!response.ok) {
         throw new Error(response.statusText)
