@@ -1,11 +1,12 @@
 import React from 'react';
 import { Header } from '../../components/Header';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { userLogIn } from '../../actions';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { userSignIn } from '../../store/actions/user';
 import login from '../../resources/login.png';
 import styles from './login.scss';
+import { IState } from '../../store';
 
 interface IContentInput {
   email: string;
@@ -13,17 +14,14 @@ interface IContentInput {
 };
 
 export function Login() {
-  const navigate = useNavigate();
+  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const dispatch = useDispatch();
   const {
     register, formState: {errors}, handleSubmit
   } = useForm<IContentInput>({mode: 'onBlur'});
 
   const onSubmit: SubmitHandler<IContentInput> = (data) => {
-    navigate(-1);
-    dispatch(userLogIn());
-    localStorage.setItem('auth', 'true');
-    // console.log(JSON.stringify(data));
+    dispatch(userSignIn(data));
   }
 
   return (
@@ -47,6 +45,7 @@ export function Login() {
                 type="email" />
               <div style={{height: 22}}>
                 {errors.email && <p>{errors.email.message || "Invalid email"}</p>}
+                {(userLoadingStatus === 'error') && !errors.email && <p>User doesn't exist</p>}
               </div>
               <label className={styles.label}>Password</label>
               <input

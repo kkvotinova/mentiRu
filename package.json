@@ -1,6 +1,7 @@
 {
   "name": "mentiru",
   "author": "ksuvot",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",
@@ -8,13 +9,15 @@
   },
   "dependencies": {
     "@redux-devtools/extension": "^3.2.2",
+    "@reduxjs/toolkit": "^1.8.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.29.0",
     "react-loading-skeleton": "^3.0.3",
     "react-redux": "^7.2.6",
     "react-router-dom": "^6.3.0",
-    "redux": "^4.1.2"
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1"
   },
   "devDependencies": {
     "@types/react": "^17.0.40",

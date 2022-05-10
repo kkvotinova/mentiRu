@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../reducers';
 import { IItemInfo, InfoItem } from './InfoItem';
+import { IState } from '../../../../store';
 import avatar from '../../../../resources/avatar.jpeg';
 import styles from './mentoritem.scss';
 
@@ -18,7 +18,7 @@ export interface IContentProps {
 
 export function MentorItem(props: IContentProps) {
   const {name, job, info, id} = props;
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   return (

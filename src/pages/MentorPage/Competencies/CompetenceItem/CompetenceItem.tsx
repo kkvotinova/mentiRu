@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { IState } from '../../../../reducers';
+import { IState } from '../../../../store';
 import styles from './competenceitem.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -12,7 +12,7 @@ export interface ICompetencies {
 }
 
 export function CompetenceItem({skill, name}: ICompetencies) {
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   if (isLoading) {

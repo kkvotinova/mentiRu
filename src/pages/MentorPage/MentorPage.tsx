@@ -4,8 +4,8 @@ import { Competencies } from './Competencies';
 import { Modal } from '../../components/Modal';
 import { ModalContent } from './ModalContent';
 import { useSelector } from 'react-redux';
-import { IState } from '../../reducers';
 import { ICompetencies } from './Competencies/CompetenceItem';
+import { IState } from '../../store';
 import styles from './mentorpage.scss';
 
 import Skeleton from 'react-loading-skeleton';
@@ -64,7 +64,7 @@ const MENTOR_INFO: IMentorInfo = {
 
 export function MentorPage() {
   const [showModal, setShowModal] = useState(false);
-  const loadingStatus = useSelector((state: IState) => state.loadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   return (

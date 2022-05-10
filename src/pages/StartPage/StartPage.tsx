@@ -1,52 +1,53 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Category } from './Category';
 import { Search } from './Search';
+import { initialCategories } from '../../store/reducers/categories/type';
 import styles from './startpage.scss';
 import {
   BackendIcon, FrontendIcon, AndroidIcon,
   DevopsIcon, DesignIcon, IosIcon
 } from '../../components/icons';
+import { IState } from '../../store';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCategories } from '../../store/actions/categories';
 
 interface ICategory {
   svgIcon: ReactElement;
-  name: string;
-  link: string;
+  name: initialCategories | string;
 }
 
-const CATEGORY_LIST: Array<ICategory> = [
-  {
-    svgIcon: <BackendIcon />,
-    name: 'Backend',
-    link: '/category/backend'
-  },
-  {
-    svgIcon: <FrontendIcon />,
-    name: 'Frontend',
-    link: '/category/frontend'
-  },
-  {
-    svgIcon: <AndroidIcon />,
-    name: 'Android',
-    link: '/category/android'
-  },
-  {
-    svgIcon: <DevopsIcon />,
-    name: 'DevOps',
-    link: '/category/devOps'
-  },
-  {
-    svgIcon: <DesignIcon />,
-    name: 'UI/UX',
-    link: '/category/ui-ux'
-  },
-  {
-    svgIcon: <IosIcon />,
-    name: 'IOS',
-    link: '/category/ios'
+const getCategoryIcon = (name: initialCategories | string): ReactElement => {
+  switch (name) {
+    case 'backend':
+      return <BackendIcon />;
+    case 'frontend':
+      return <FrontendIcon />;
+    case 'android':
+      return <AndroidIcon />;
+    case 'devops':
+      return <DevopsIcon />;
+    case 'design':
+      return <DesignIcon />;
+    case 'ios':
+      return <IosIcon />;
+    default:
+      return <>Error</>;
   }
-];
+}
 
 export function StartPage() {
+  const dispatch = useDispatch();
+  const categories = useSelector((state: IState) => state.categories.categoriesList);
+  const loadingStatus = useSelector((state: IState) => state.categories.loadingStatus);
+  let categoriesList: ICategory[] = categories.map(item => ({
+    svgIcon: getCategoryIcon(item.name),
+    name: item.name
+  }));
+
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [])
+
   return (
     <main className={styles.main}>
       <Search />
@@ -57,7 +58,7 @@ export function StartPage() {
       <section className={styles.section_cat}>
         <h1 className={styles.heading_cat}>Find a mentor by category</h1>
         <ul className={styles.categories}>
-          {CATEGORY_LIST.map((item, id) => <Category key={id} {...item}/>)}
+          {(loadingStatus !== 'error') ? categoriesList.map((item, id) => <Category key={id} {...item}/>) : "Oops, something went wrong"}
         </ul>
       </section>
     </main>
