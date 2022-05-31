@@ -1,7 +1,7 @@
 {
   "name": "mentiru",
   "author": "ksuvot",
-  "proxy": "http://localhost:5000",
+  "proxy": "http://51.250.102.238:80",
   "scripts": {
     "build:dev": "cross-env NODE_ENV=development webpack --config webpack.config.js",
     "build:prod": "cross-env NODE_ENV=production webpack --config webpack.config.js",

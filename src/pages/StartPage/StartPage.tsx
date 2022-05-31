@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement, useEffect, useMemo } from 'react';
 import { Category } from './Category';
 import { Search } from './Search';
 import { initialCategories } from '../../store/reducers/categories/type';
@@ -39,14 +39,16 @@ export function StartPage() {
   const dispatch = useDispatch();
   const categories = useSelector((state: IState) => state.categories.categoriesList);
   const loadingStatus = useSelector((state: IState) => state.categories.loadingStatus);
-  let categoriesList: ICategory[] = categories.map(item => ({
+  let categoriesList: ICategory[] = useMemo(() => categories.map(item => ({
     svgIcon: getCategoryIcon(item.name),
     name: item.name
-  }));
+  })), [categories]);
 
   useEffect(() => {
     dispatch(getCategories());
   }, [])
+
+  const config = useMemo(() => categoriesList.map((item, id) => <Category key={id} {...item}/>), [categoriesList]);
 
   return (
     <main className={styles.main}>
@@ -58,7 +60,7 @@ export function StartPage() {
       <section className={styles.section_cat}>
         <h1 className={styles.heading_cat}>Find a mentor by category</h1>
         <ul className={styles.categories}>
-          {(loadingStatus !== 'error') ? categoriesList.map((item, id) => <Category key={id} {...item}/>) : "Oops, something went wrong"}
+          {(loadingStatus !== 'error') ? config : "Oops, something went wrong"}
         </ul>
       </section>
     </main>

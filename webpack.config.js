@@ -73,7 +73,7 @@ module.exports = {
     hot: IS_DEV,
     historyApiFallback: true,
     proxy: {
-      '/api': 'http://localhost:5000',
+      '/api': 'http://51.250.102.238:80',
     }
   },
   devtool: setupDevtool()
