@@ -5,8 +5,12 @@ import styles from './buttongroup.scss';
 export function ButtonGroup() {
   return (
     <div className={styles.group}>
-      <Link to="/login" className={styles.secondary}>Log in</Link>
-      <Link to="/signup" className={styles.primary}>Sign up</Link>
+      <Link to='/login' className={styles.secondary}>
+        Log in
+      </Link>
+      <Link to='/signup' className={styles.primary}>
+        Sign up
+      </Link>
     </div>
   );
 }

@@ -9,17 +9,19 @@ export interface IFilterItem {
 }
 
 interface IContentProps {
-  item: IFilterItem
+  item: IFilterItem;
   onChangeList: any;
 }
 
-export function FilterItem({item, onChangeList}: IContentProps) {
-  const {name, isMarked} = item;
+export function FilterItem({ item, onChangeList }: IContentProps) {
+  const { name, isMarked } = item;
   return (
     <li
-      onClick={() => onChangeList({name, isMarked: !isMarked})}
-      style={{backgroundImage: 'url(' + `${isMarked ? checkboxMarked : checkbox}` + ')'}}
-      className={styles.item} >
-      {name}</li>
+      onClick={() => onChangeList({ name, isMarked: !isMarked })}
+      style={{ backgroundImage: 'url(' + `${isMarked ? checkboxMarked : checkbox}` + ')' }}
+      className={styles.item}
+    >
+      {name}
+    </li>
   );
 }

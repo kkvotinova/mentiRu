@@ -6,7 +6,7 @@ export interface IItemInfo {
   desc: string;
 }
 
-export function ProfileItem({title, desc}: IItemInfo) {
+export function ProfileItem({ title, desc }: IItemInfo) {
   return (
     <li className={styles.item}>
       <span className={styles.title}>{title + ':'}</span>

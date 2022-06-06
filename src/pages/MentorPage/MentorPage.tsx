@@ -9,7 +9,7 @@ import { IState } from '../../store';
 import styles from './mentorpage.scss';
 
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface IMentorInfo {
   name: string;
@@ -27,39 +27,40 @@ interface IItemInfo {
 const MENTOR_INFO: IMentorInfo = {
   name: 'Nikita Sobolev',
   job: 'CTO @ wemake.services',
-  about: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at.',
+  about:
+    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis distinctio labore libero, fugiat corrupti aliquam neque, reprehenderit reiciendis animi ullam consequuntur possimus, incidunt repudiandae optio? Maxime labore nulla odio at.',
   info: [
     {
       title: 'Experience',
-      desc: '10+ years'
+      desc: '10+ years',
     },
     {
       title: 'Price (per hour)',
-      desc: '65 $'
+      desc: '65 $',
     },
     {
       title: 'Received help',
-      desc: '8 people'
-    }
+      desc: '8 people',
+    },
   ],
   competence: [
     {
       skill: 'good',
-      name: 'Python'
+      name: 'Python',
     },
     {
       skill: 'average',
-      name: 'Django'
+      name: 'Django',
     },
     {
       skill: 'average',
-      name: 'TypeScript'
+      name: 'TypeScript',
     },
     {
       skill: 'bad',
-      name: 'GitHub Actions'
+      name: 'GitHub Actions',
     },
-  ]
+  ],
 };
 
 export function MentorPage() {
@@ -70,18 +71,16 @@ export function MentorPage() {
   return (
     <>
       <main className={styles.main}>
-        <Profile setShowModal={setShowModal} {...MENTOR_INFO}/>
+        <Profile setShowModal={setShowModal} {...MENTOR_INFO} />
         <section className={styles.section}>
           <h2>About me</h2>
-          {isLoading ? <Skeleton count={10}/> : <p>{MENTOR_INFO.about}</p>}
+          {isLoading ? <Skeleton count={10} /> : <p>{MENTOR_INFO.about}</p>}
         </section>
-        <Competencies {...MENTOR_INFO.competence}/>
+        <Competencies {...MENTOR_INFO.competence} />
       </main>
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        children={<ModalContent/>}
-        heading={'New request'}/>
+      <Modal showModal={showModal} setShowModal={setShowModal} heading={'New request'}>
+        <ModalContent />
+      </Modal>
     </>
   );
 }

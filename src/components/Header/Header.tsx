@@ -10,7 +10,7 @@ interface IContentProps {
 }
 
 export function Header(props: IContentProps) {
-  const {isGroup = false, isAuth = false} = props;
+  const { isGroup = false, isAuth = false } = props;
 
   return (
     <header className={styles.header}>

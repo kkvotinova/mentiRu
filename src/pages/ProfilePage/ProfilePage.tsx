@@ -12,15 +12,13 @@ export function ProfilePage() {
   return (
     <>
       <main className={styles.main}>
-        <Profile/>
-        <ResumeList setShowModal={setShowModal}/>
+        <Profile />
+        <ResumeList setShowModal={setShowModal} />
         <Requests />
       </main>
-      <Modal
-        showModal={showModal}
-        setShowModal={setShowModal}
-        children={<ModalContent/>}
-        heading={'Create resume'}/>
+      <Modal showModal={showModal} setShowModal={setShowModal} heading={'Create resume'}>
+        <ModalContent />
+      </Modal>
     </>
   );
 }
