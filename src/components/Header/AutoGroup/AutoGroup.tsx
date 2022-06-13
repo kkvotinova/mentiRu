@@ -12,6 +12,7 @@ import user from '../../../resources/svg/user.svg';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { getFullName } from '../../../utils/format';
 
 export function AutoGroup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +45,11 @@ export function AutoGroup() {
           <img src={userInfo.avatar} alt='avatar' />
         )}
         <span className={`${styles.span} ${isOpen ? styles.open : null}`}>
-          {isLoading ? <Skeleton width={120} /> : userInfo.firstName + ' ' + userInfo.lastName}
+          {isLoading ? (
+            <Skeleton width={120} />
+          ) : (
+            getFullName(userInfo.firstName, userInfo.lastName)
+          )}
         </span>
         <ChevronIcon />
         <ul className={`${styles.list} ${isOpen ? styles.show : null}`}>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const path = require('path');
 const NODE_ENV = process.env.NODE_ENV;
 const IS_DEV = NODE_ENV === 'development';
@@ -6,20 +7,20 @@ const HTMLWebpackPlugin = require('html-webpack-plugin');
 const GLOBAL_SCSS_REGEXP = /\.global\.scss$/;
 
 function setupDevtool() {
-    if (IS_DEV) return 'eval';
-    if (IS_PROD) return false;
+  if (IS_DEV) return 'eval';
+  if (IS_PROD) return false;
 }
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   mode: NODE_ENV ? NODE_ENV : 'development',
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index.js',
-    publicPath: '/'
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -32,11 +33,11 @@ module.exports = {
       },
       {
         test: /\.[tj]sx?$/,
-        use: ['cache-loader', 'ts-loader']
+        use: ['cache-loader', 'ts-loader'],
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.scss$/i,
@@ -48,24 +49,25 @@ module.exports = {
             options: {
               modules: {
                 mode: 'local',
-                localIdentName: '[name]__[local]--[hash:base64:5]'
-              }
-            }
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
           },
-          'sass-loader'
+          'sass-loader',
         ],
-        exclude: GLOBAL_SCSS_REGEXP
+        exclude: GLOBAL_SCSS_REGEXP,
       },
       {
         test: GLOBAL_SCSS_REGEXP,
-        use: ['style-loader', 'cache-loader', 'css-loader', 'sass-loader']
-      }
-    ]
+        use: ['style-loader', 'cache-loader', 'css-loader', 'sass-loader'],
+      },
+    ],
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve(__dirname, 'index.html')
-    })
+      template: path.resolve(__dirname, 'index.html'),
+      favicon: path.resolve(__dirname, 'src/resources/favicon.ico'),
+    }),
   ],
   devServer: {
     port: 3000,
@@ -74,7 +76,7 @@ module.exports = {
     historyApiFallback: true,
     proxy: {
       '/api': 'http://51.250.102.238:80',
-    }
+    },
   },
-  devtool: setupDevtool()
+  devtool: setupDevtool(),
 };

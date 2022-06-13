@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo } from 'react';
+import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { Category } from './Category';
 import { Search } from './Search';
 import { initialCategories } from '../../store/reducers/categories/type';
@@ -20,37 +20,37 @@ interface ICategory {
   name: initialCategories | string;
 }
 
-const getCategoryIcon = (name: initialCategories | string): ReactElement => {
-  switch (name) {
-    case 'backend':
-      return <BackendIcon />;
-    case 'frontend':
-      return <FrontendIcon />;
-    case 'android':
-      return <AndroidIcon />;
-    case 'devops':
-      return <DevopsIcon />;
-    case 'design':
-      return <DesignIcon />;
-    case 'ios':
-      return <IosIcon />;
-    default:
-      return <>Error</>;
-  }
-};
-
 export function StartPage() {
   const dispatch = useDispatch();
   const categories = useSelector((state: IState) => state.categories.categoriesList);
   const loadingStatus = useSelector((state: IState) => state.categories.loadingStatus);
 
+  const getCategoryIcon = useCallback((name: initialCategories | string): ReactElement => {
+    switch (name) {
+      case 'backend':
+        return <BackendIcon />;
+      case 'frontend':
+        return <FrontendIcon />;
+      case 'android':
+        return <AndroidIcon />;
+      case 'devops':
+        return <DevopsIcon />;
+      case 'design':
+        return <DesignIcon />;
+      case 'ios':
+        return <IosIcon />;
+      default:
+        return <>Error</>;
+    }
+  }, []);
+
   const categoriesList: ICategory[] = useMemo(
     () =>
       categories.map((item) => ({
-        svgIcon: getCategoryIcon(item.name),
-        name: item.name,
+        svgIcon: getCategoryIcon(item),
+        name: item,
       })),
-    [categories],
+    [categories, getCategoryIcon],
   );
 
   useEffect(() => {

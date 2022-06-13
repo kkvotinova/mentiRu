@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useMemo } from 'react';
 import { ProfileItem, IItemInfo } from './ProfileItem';
 import { useSelector } from 'react-redux';
 import { IState } from '../../../store';
-import avatar from '../../../resources/avatar.jpeg';
+import avatar from '../../../resources/avatar.png';
 import styles from './profile.scss';
 
 import Skeleton from 'react-loading-skeleton';

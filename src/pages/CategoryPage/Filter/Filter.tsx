@@ -1,19 +1,25 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { FilterItem, IFilterItem } from './FilterItem';
 import styles from './filter.scss';
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { IState } from '../../../store';
+import { withCapitalLetter } from '../../../utils/format';
+import { getCategories } from '../../../store/actions/categories';
 
-const FILTER_LIST: string[] = [
-  'Backend Developer',
-  'Frontend Developer',
-  'Android Developer',
-  'IOS Developer',
-  'UI/UX/Design',
-  'Illustrator',
-];
+export interface FilterProps {
+  selectedItemName: string;
+}
 
-export function Filter() {
-  const [list, setList] = useState(FILTER_LIST.map((item) => ({ name: item, isMarked: false })));
+export function Filter({ selectedItemName }: FilterProps) {
+  const dispatch = useDispatch();
+  const categories = useSelector((state: IState) => state.categories.categoriesList);
+  const [list, setList] = useState(
+    categories.map((item) => ({
+      name: withCapitalLetter(item),
+      isMarked: item === selectedItemName,
+    })),
+  );
 
   const onChangeList = useCallback(
     ({ name, isMarked }: IFilterItem) => {
@@ -28,32 +34,50 @@ export function Filter() {
         ),
       );
     },
-    [list, setList],
+    [list],
   );
 
-  const clearAll = useCallback(() => {
+  const handleClearAll = useCallback(() => {
     setList(
-      FILTER_LIST.map((item) => ({
-        name: item,
+      categories.map((item) => ({
+        name: withCapitalLetter(item),
         isMarked: false,
       })),
     );
-  }, [setList]);
+  }, [categories]);
 
   const itemList = useMemo(
     () => list.map((item, id) => <FilterItem key={id} item={item} onChangeList={onChangeList} />),
     [list, onChangeList],
   );
 
+  useEffect(() => {
+    dispatch(getCategories());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!list.length) {
+      setList(
+        categories.map((item) => ({
+          name: withCapitalLetter(item),
+          isMarked: item === selectedItemName,
+        })),
+      );
+    }
+  }, [categories, list.length, selectedItemName]);
+
   return (
     <div className={styles.filter}>
       <div className={styles.header}>
         <h3>Filter</h3>
-        <button onClick={clearAll} className={styles.text}>
+        <button onClick={handleClearAll} className={styles.text}>
           Clear all
         </button>
       </div>
       <ul>{itemList}</ul>
     </div>
   );
+}
+function dispatch(arg0: any) {
+  throw new Error('Function not implemented.');
 }

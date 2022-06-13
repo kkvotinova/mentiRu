@@ -1,13 +1,21 @@
+import { ICV } from '../mentor/type';
+
 export enum UserActions {
   USER_LOGIN = 'USER_LOGIN',
   USER_SIGNUP = 'USER_SIGNUP',
   USER_LOGOUT = 'USER_LOGOUT',
   USER_DATA_FETCHING = 'USER_DATA_FETCHING',
   USER_DATA_FETCHED = 'USER_DATA_FETCHED',
-  USER_DATA_FETCHING_ERROR = 'USER_DATA_FETCHING_ERROR'
+  USER_DATA_FETCHING_ERROR = 'USER_DATA_FETCHING_ERROR',
 }
 
-export type IUserAction = IUserLogIn | IUserLogOut | IUserDataFetched | IUserDataFetching | IUserDataFetchingError | IUserSignUp;
+export type IUserAction =
+  | IUserLogIn
+  | IUserLogOut
+  | IUserDataFetched
+  | IUserDataFetching
+  | IUserDataFetchingError
+  | IUserSignUp;
 
 export interface IUserLogIn {
   type: UserActions.USER_LOGIN;
@@ -41,15 +49,11 @@ export interface IUserState {
   userInfo: IUserInfo;
 }
 
-export interface IUserCVS {
-// TODO
-}
-
 export interface IUserInfo {
   firstName: string;
   lastName: string;
   email: string;
-  cvs: IUserCVS[];
+  cvs: ICV[];
   avatar: string;
   phone: string;
 }
@@ -64,17 +68,18 @@ export interface IUserForm {
 
 export interface IBDGetMe {
   user: {
-    cvs: []
+    about_me: string;
+    cvs: ICV[];
     date_time_add: number;
     email: string;
     first_name: string;
-    gender: "M" | "W";
+    gender: 'M' | 'W';
     id_: string;
-    is_admin: boolean
+    is_admin: boolean;
     last_name: string;
     middle_name: string;
     password: string;
     phone: string;
     telegram_profile: string;
-  }
+  };
 }
