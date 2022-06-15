@@ -7,12 +7,12 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 export interface ICompetencies {
-  skill: 'good' | 'average' | 'bad';
+  skill: 'good' | 'average' | 'bad' | string;
   name: string;
 }
 
 export function CompetenceItem({ skill, name }: ICompetencies) {
-  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.mentor.loadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   if (isLoading) {

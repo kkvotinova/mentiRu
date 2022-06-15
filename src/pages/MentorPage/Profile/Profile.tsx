@@ -16,8 +16,9 @@ interface IMentorInfo {
 }
 
 export function Profile({ name, job, info, setShowModal }: IMentorInfo) {
-  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.mentor.loadingStatus);
   const isLoading = 'loading' === loadingStatus;
+  const isAuth = useSelector((state: IState) => state.user.isAuth);
 
   const infoList = useMemo(
     () => info.map((item, id) => <ProfileItem key={id} {...item} />),
@@ -37,7 +38,7 @@ export function Profile({ name, job, info, setShowModal }: IMentorInfo) {
         <ul className={styles.info}>
           {isLoading ? <Skeleton count={3} style={{ marginBottom: 10 }} /> : infoList}
         </ul>
-        <button disabled={isLoading} onClick={() => setShowModal(true)} className={styles.primary}>
+        <button disabled={!isAuth} onClick={() => setShowModal(true)} className={styles.primary}>
           Leave a request
         </button>
       </div>

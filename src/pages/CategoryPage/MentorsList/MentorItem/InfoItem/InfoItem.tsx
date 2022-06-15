@@ -12,7 +12,7 @@ export interface IItemInfo {
 }
 
 export function InfoItem({ title, desc }: IItemInfo) {
-  const loadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const loadingStatus = useSelector((state: IState) => state.categories.loadingStatus);
   const isLoading = 'loading' === loadingStatus;
 
   if (isLoading) {

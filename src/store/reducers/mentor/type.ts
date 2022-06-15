@@ -1,5 +1,37 @@
-export interface MentorState {
+export interface IMentorState {
   loadingStatus: 'loading' | 'idle' | 'error';
+  cv: ICV | undefined;
+  user: ICVUser | undefined;
+}
+
+export enum MentorActions {
+  MENTOR_FETCHING = 'MENTOR_FETCHING',
+  MENTOR_FETCHED = 'MENTOR_FETCHED',
+  OTHER_DATA_FETCHED = 'OTHER_DATA_FETCHED',
+  MENTOR_FETCHING_ERROR = 'MENTOR_FETCHING_ERROR',
+}
+
+export type IMentorAction =
+  | IMentorFetching
+  | IMentorFetched
+  | IMentorFetchingError
+  | OtherDataFetching;
+
+export interface IMentorFetching {
+  type: MentorActions.MENTOR_FETCHING;
+}
+
+export interface OtherDataFetching {
+  type: MentorActions.OTHER_DATA_FETCHED;
+}
+
+export interface IMentorFetched {
+  type: MentorActions.MENTOR_FETCHED;
+  payload: { cv: ICV | undefined; user: ICVUser | undefined };
+}
+
+export interface IMentorFetchingError {
+  type: MentorActions.MENTOR_FETCHING_ERROR;
 }
 
 export interface ICVSkills {
@@ -37,4 +69,11 @@ export interface ICV {
   price: string;
   user: ICVUser;
   user_id: string;
+}
+
+// ===
+export interface MentorSendRequestData {
+  to_id: string;
+  description: string;
+  date_time: number;
 }

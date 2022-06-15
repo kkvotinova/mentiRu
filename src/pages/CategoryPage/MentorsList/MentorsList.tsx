@@ -14,7 +14,7 @@ export function MentorsList() {
         const name = getFullName(item.user.first_name, item.user.last_name);
         const info = [
           {
-            title: 'Expirience',
+            title: 'Experience',
             desc: item.experience,
           },
           {

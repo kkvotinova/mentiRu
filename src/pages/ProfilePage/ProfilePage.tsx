@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Modal } from '../../components/Modal';
 import { Profile } from './Profile/Profile';
 import { Requests } from './Requests';
 import { ResumeList } from './ResumeList';
 import styles from './profilepage.scss';
-import { ModalContent } from './ModalContent';
 
 export function ProfilePage() {
   const [showModal, setShowModal] = useState(false);
+
+  const onSubmit = useCallback((data) => {
+    console.log(data);
+  }, []);
 
   return (
     <>
@@ -16,9 +19,12 @@ export function ProfilePage() {
         <ResumeList setShowModal={setShowModal} />
         <Requests />
       </main>
-      <Modal showModal={showModal} setShowModal={setShowModal} heading={'Create resume'}>
-        <ModalContent />
-      </Modal>
+      <Modal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        heading={'Create resume'}
+        onSubmit={onSubmit}
+      />
     </>
   );
 }

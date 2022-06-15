@@ -5,17 +5,21 @@ import { ICategoriesState } from './reducers/categories/type';
 import { categoriesReducer } from './reducers/categories';
 import { ICategoryState } from './reducers/category/type';
 import { categoryReducer } from './reducers/category';
+import { IMentorState } from './reducers/mentor/type';
+import { mentorReducer } from './reducers/mentor';
 
 export interface IState {
   user: IUserState;
   categories: ICategoriesState;
   category: ICategoryState;
+  mentor: IMentorState;
 }
 export const store = configureStore({
   reducer: {
     user: userReducer,
     categories: categoriesReducer,
     category: categoryReducer,
+    mentor: mentorReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
