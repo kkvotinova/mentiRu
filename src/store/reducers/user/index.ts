@@ -1,5 +1,6 @@
-import { Reducer } from "redux";
-import { IUserAction, IUserState, UserActions } from "./type";
+import { Reducer } from 'redux';
+import { IUserAction, IUserState, UserActions } from './type';
+import avatar from '../../../resources/avatar.png';
 
 const initialState: IUserState = {
   isAuth: false,
@@ -11,9 +12,9 @@ const initialState: IUserState = {
     email: '',
     cvs: [],
     phone: '',
-    avatar: 'https://6dou.ru/assets/user_assets/%D0%A4%D0%BE%D1%82%D0%BE%20%D0%BF%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D0%B5%D0%B9%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2/nophoto.png'
-  }
-}
+    avatar: avatar,
+  },
+};
 
 export const userReducer: Reducer = (state = initialState, action: IUserAction): IUserState => {
   switch (action.type) {
@@ -25,8 +26,8 @@ export const userReducer: Reducer = (state = initialState, action: IUserAction):
     case UserActions.USER_SIGNUP:
       return {
         ...state,
-        isSignUp: true
-      }
+        isSignUp: true,
+      };
     case UserActions.USER_LOGOUT:
       return initialState;
     case UserActions.USER_DATA_FETCHING:
@@ -38,15 +39,19 @@ export const userReducer: Reducer = (state = initialState, action: IUserAction):
       return {
         ...state,
         userLoadingStatus: 'idle',
-        userInfo: action.payload
+        userInfo: action.payload,
       };
     case UserActions.USER_DATA_FETCHING_ERROR:
       return {
         ...state,
         userLoadingStatus: 'error',
       };
+    case UserActions.USER_OTHER:
+      return {
+        ...state,
+        userLoadingStatus: 'idle',
+      };
     default:
       return state;
   }
-}
-
+};

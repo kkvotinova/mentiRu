@@ -15,13 +15,11 @@ export function Layout() {
       dispatch(userLogIn());
       dispatch(userGetInfo());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
-      <Header
-        isGroup={!isAuth}
-        isAuth={isAuth} />
+      <Header isGroup={!isAuth} isAuth={isAuth} />
       <Outlet />
       <Footer />
     </>

@@ -1,12 +1,15 @@
-import { Reducer } from "redux";
-import { CategoriesActions, ICategoriesAction, ICategoriesState } from "./type";
+import { Reducer } from 'redux';
+import { CategoriesActions, ICategoriesAction, ICategoriesState } from './type';
 
 const initialState: ICategoriesState = {
   loadingStatus: 'loading',
-  categoriesList: []
-}
+  categoriesList: [],
+};
 
-export const categoriesReducer: Reducer = (state = initialState, action: ICategoriesAction): ICategoriesState => {
+export const categoriesReducer: Reducer = (
+  state = initialState,
+  action: ICategoriesAction,
+): ICategoriesState => {
   switch (action.type) {
     case CategoriesActions.CATEGORIES_FETCHING:
       return {
@@ -16,7 +19,7 @@ export const categoriesReducer: Reducer = (state = initialState, action: ICatego
     case CategoriesActions.CATEGORIES_FETCHED:
       return {
         loadingStatus: 'idle',
-        categoriesList: action.payload
+        categoriesList: action.payload,
       };
     case CategoriesActions.CATEGORIES_FETCHING_ERROR:
       return {
@@ -26,4 +29,4 @@ export const categoriesReducer: Reducer = (state = initialState, action: ICatego
     default:
       return state;
   }
-}
+};

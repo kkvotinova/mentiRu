@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   & > label {
-    margin-bottom: 8px;
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
@@ -24,11 +23,21 @@
     resize: none;
     height: 100px;
   }
+  & > div {
+    height: 8px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: $error-600;
+  }
 }
 
 .item {
   &.double {
     flex-direction: row;
+    & > div {
+      height: 100%;
+    }
   }
   &:not(:last-child) {
     margin-bottom: 20px;

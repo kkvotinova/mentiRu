@@ -1,30 +1,37 @@
-import { Dispatch } from "redux";
-import { ICategoriesFetched, ICategoriesFetching, ICategories, ICategoriesFetchingError, CategoriesActions } from "../reducers/categories/type";
+import { Dispatch } from 'redux';
+import {
+  ICategoriesFetched,
+  ICategoriesFetching,
+  ICategoriesFetchingError,
+  CategoriesActions,
+  CategoriesList,
+} from '../reducers/categories/type';
 
-export const categoriesFetching  = (): ICategoriesFetching => ({type: CategoriesActions.CATEGORIES_FETCHING})
-export const categoriesFetchingError = (): ICategoriesFetchingError => ({type: CategoriesActions.CATEGORIES_FETCHING_ERROR})
-export const categoriesFetched = (payload: ICategories[]): ICategoriesFetched => ({
+export const categoriesFetching = (): ICategoriesFetching => ({
+  type: CategoriesActions.CATEGORIES_FETCHING,
+});
+export const categoriesFetchingError = (): ICategoriesFetchingError => ({
+  type: CategoriesActions.CATEGORIES_FETCHING_ERROR,
+});
+export const categoriesFetched = (payload: CategoriesList): ICategoriesFetched => ({
   type: CategoriesActions.CATEGORIES_FETCHED,
   payload,
-})
+});
 
 export const getCategories = () => (dispatch: Dispatch<any>) => {
   dispatch(categoriesFetching());
-  fetch("/api/v1/categories/get_categories")
+  fetch('/api/v1/categories/get_categories')
     .then((response: Response) => {
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     })
-    .then(data => {
-      const payload: ICategories[] = data.categories.map((item: any) => ({
-        name: item
-      }));
-      dispatch(categoriesFetched(payload));
+    .then((data) => {
+      dispatch(categoriesFetched(data.categories));
     })
     .catch((error: Error) => {
       dispatch(categoriesFetchingError());
       console.log(error.message);
-    })
-}
+    });
+};
