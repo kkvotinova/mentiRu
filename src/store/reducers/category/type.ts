@@ -1,7 +1,8 @@
+import { LoadingStatus } from '../../../utils/constants';
 import { ICV } from '../mentor/type';
 
 export interface ICategoryState {
-  loadingStatus: 'loading' | 'idle' | 'error';
+  loadingStatus: LoadingStatus;
   cvs: ICV[];
 }
 

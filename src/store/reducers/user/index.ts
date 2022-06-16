@@ -46,6 +46,11 @@ export const userReducer: Reducer = (state = initialState, action: IUserAction):
         ...state,
         userLoadingStatus: 'error',
       };
+    case UserActions.USER_OTHER:
+      return {
+        ...state,
+        userLoadingStatus: 'idle',
+      };
     default:
       return state;
   }

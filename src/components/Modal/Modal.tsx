@@ -1,25 +1,43 @@
-import React, { Dispatch, SetStateAction, useCallback, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import React, { Dispatch, SetStateAction, useCallback } from 'react';
+import {
+  FieldValues,
+  UseFormClearErrors,
+  UseFormHandleSubmit,
+  UseFormRegister,
+} from 'react-hook-form';
 import { ModalContent as MentorContent } from '../../pages/MentorPage/ModalContent';
 import { ModalContent as ProfileContent } from '../../pages/ProfilePage/ModalContent';
+import { ICV } from '../../store/reducers/mentor/type';
 import styles from './modal.scss';
 
 interface IModalProps {
   showModal: boolean;
-  heading: string;
   setShowModal: Dispatch<SetStateAction<boolean>>;
+
+  cv?: ICV;
+  heading: string;
   onSubmit: (data: any) => void;
+
+  register: UseFormRegister<FieldValues>;
+  handleSubmit: UseFormHandleSubmit<FieldValues>;
+  clearErrors: UseFormClearErrors<FieldValues>;
+  errors: {
+    [x: string]: any;
+  };
 }
 
 export function Modal(props: IModalProps) {
-  const { setShowModal, showModal, heading, onSubmit } = props;
-
   const {
+    setShowModal,
+    showModal,
+    heading,
+    onSubmit,
     register,
-    formState: { errors },
     handleSubmit,
     clearErrors,
-  } = useForm({ mode: 'onBlur' });
+    errors,
+    cv,
+  } = props;
 
   const handleClearInput = useCallback(() => {
     setShowModal(false);
@@ -40,7 +58,7 @@ export function Modal(props: IModalProps) {
         >
           <h3 className={styles.heading}>{heading}</h3>
           {heading === 'Create resume' ? (
-            <ProfileContent />
+            <ProfileContent cv={cv} errors={errors} register={register} />
           ) : (
             <MentorContent errors={errors} register={register} />
           )}
@@ -49,7 +67,7 @@ export function Modal(props: IModalProps) {
               Cancel
             </button>
             <button className={styles.primary} type='submit'>
-              Create
+              {heading === 'Create resume' ? (cv ? 'Update' : 'Create') : 'Create'}
             </button>
           </div>
         </form>

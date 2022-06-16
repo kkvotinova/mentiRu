@@ -1,9 +1,11 @@
+import { LoadingStatus } from '../../../utils/constants';
+
 export type initialCategories = 'backend' | 'frontend' | 'android' | 'ios' | 'devops' | 'design';
 
 export type CategoriesList = Array<initialCategories | string>;
 
 export interface ICategoriesState {
-  loadingStatus: 'loading' | 'idle' | 'error';
+  loadingStatus: LoadingStatus;
   categoriesList: CategoriesList;
 }
 

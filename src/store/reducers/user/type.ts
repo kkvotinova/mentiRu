@@ -1,4 +1,5 @@
-import { ICV } from '../mentor/type';
+import { LoadingStatus } from '../../../utils/constants';
+import { ICV, ICVSkills } from '../mentor/type';
 
 export enum UserActions {
   USER_LOGIN = 'USER_LOGIN',
@@ -7,6 +8,7 @@ export enum UserActions {
   USER_DATA_FETCHING = 'USER_DATA_FETCHING',
   USER_DATA_FETCHED = 'USER_DATA_FETCHED',
   USER_DATA_FETCHING_ERROR = 'USER_DATA_FETCHING_ERROR',
+  USER_OTHER = 'USER_OTHER',
 }
 
 export type IUserAction =
@@ -15,7 +17,8 @@ export type IUserAction =
   | IUserDataFetched
   | IUserDataFetching
   | IUserDataFetchingError
-  | IUserSignUp;
+  | IUserSignUp
+  | IUserOther;
 
 export interface IUserLogIn {
   type: UserActions.USER_LOGIN;
@@ -42,10 +45,14 @@ export interface IUserDataFetchingError {
   type: UserActions.USER_DATA_FETCHING_ERROR;
 }
 
+export interface IUserOther {
+  type: UserActions.USER_OTHER;
+}
+
 export interface IUserState {
   isAuth: boolean;
   isSignUp: boolean;
-  userLoadingStatus: 'loading' | 'idle' | 'error';
+  userLoadingStatus: LoadingStatus;
   userInfo: IUserInfo;
 }
 
@@ -82,4 +89,15 @@ export interface IBDGetMe {
     phone: string;
     telegram_profile: string;
   };
+}
+
+// ===
+export interface ApiUserUpdateCV {
+  cv_id: string;
+  about: string;
+  experience: string;
+  job: string;
+  price: string;
+  skills: ICVSkills[];
+  category: string;
 }

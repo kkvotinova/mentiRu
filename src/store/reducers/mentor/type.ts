@@ -1,5 +1,7 @@
+import { LoadingStatus } from '../../../utils/constants';
+
 export interface IMentorState {
-  loadingStatus: 'loading' | 'idle' | 'error';
+  loadingStatus: LoadingStatus | 'cool';
   cv: ICV | undefined;
   user: ICVUser | undefined;
 }
@@ -35,7 +37,7 @@ export interface IMentorFetchingError {
 }
 
 export interface ICVSkills {
-  category: string;
+  category?: string;
   grade: string;
   name: string;
 }
@@ -57,7 +59,7 @@ export interface ICVUser {
 
 export interface ICV {
   about: string;
-  categories: string;
+  category: string;
   cv_skills: ICVSkills[];
   cv_times: [];
   date_time_add: string;

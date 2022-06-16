@@ -31,7 +31,7 @@ export const mentorReducer: Reducer = (
     case MentorActions.OTHER_DATA_FETCHED:
       return {
         ...state,
-        loadingStatus: 'idle',
+        loadingStatus: 'cool',
       };
     default:
       return state;

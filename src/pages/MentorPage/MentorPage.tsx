@@ -12,15 +12,21 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useParams } from 'react-router-dom';
 import { getCategoryMentor, sendMentorRequest } from '../../store/actions/mentor';
 import { getFullName } from '../../utils/format';
-import { SubmitHandler } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 export function MentorPage() {
   const [showModal, setShowModal] = useState(false);
   const params = useParams();
   const dispatch = useDispatch();
 
-  const mentor = useSelector((state: IState) => state.mentor);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    clearErrors,
+  } = useForm({ mode: 'onBlur' });
 
+  const mentor = useSelector((state: IState) => state.mentor);
   const isLoading = 'loading' === mentor.loadingStatus;
   const isError = 'error' === mentor.loadingStatus;
 
@@ -72,7 +78,6 @@ export function MentorPage() {
     async (data) => {
       const date = new Date(data.date);
 
-      // TODO: закрытие модалки после отправления
       dispatch(
         sendMentorRequest({
           to_id: mentor.user?.id_ as string,
@@ -84,11 +89,17 @@ export function MentorPage() {
     [dispatch, mentor],
   );
 
+  useEffect(() => {
+    if (mentor.loadingStatus === 'cool') {
+      setShowModal(false);
+    }
+  }, [mentor.loadingStatus]);
+
   return (
     <>
       <main className={styles.main}>
         {isError ? (
-          <div className={styles.errorMessage}>Nothing found for your search</div>
+          <div className={styles.errorMessage}>Something went wrong. Try to reload the page</div>
         ) : (
           <>
             <Profile setShowModal={setShowModal} {...profileConfig} />
@@ -101,10 +112,14 @@ export function MentorPage() {
         )}
       </main>
       <Modal
+        register={register}
+        handleSubmit={handleSubmit}
+        clearErrors={clearErrors}
         showModal={showModal}
         setShowModal={setShowModal}
         heading={'New request'}
         onSubmit={onSubmit}
+        errors={errors}
       />
     </>
   );

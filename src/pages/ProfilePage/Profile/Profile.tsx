@@ -1,17 +1,17 @@
 import React from 'react';
 import { Form } from './Form';
-import { useSelector } from 'react-redux';
-import { IState } from '../../../store';
 import styles from './profile.scss';
 
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { IUserInfo } from '../../../store/reducers/user/type';
 
-export function Profile() {
-  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
-  const userInfo = useSelector((state: IState) => state.user.userInfo);
-  const isLoading = 'loading' === userLoadingStatus;
+interface ProfileProps {
+  isLoading: boolean;
+  userInfo: IUserInfo;
+}
 
+export function Profile({ isLoading, userInfo }: ProfileProps) {
   return (
     <section className={styles.section}>
       <h1 className={styles.header}>My profile</h1>

@@ -10,10 +10,15 @@ import {
   IUserLogIn,
   IUserLogOut,
   IBDGetMe,
+  ApiUserUpdateCV,
+  IUserOther,
 } from '../reducers/user/type';
 import avatar from '../../resources/avatar.png';
 
 export const userLogIn = (): IUserLogIn => ({ type: UserActions.USER_LOGIN });
+export const userOther = (): IUserOther => ({
+  type: UserActions.USER_OTHER,
+});
 export const userLogOut = (): IUserLogOut => ({ type: UserActions.USER_LOGOUT });
 export const userDataFetchingError = (): IUserDataFetchingError => ({
   type: UserActions.USER_DATA_FETCHING_ERROR,
@@ -150,3 +155,31 @@ export const userUpdateInfo =
         console.log('Error: ', error.message);
       });
   };
+
+export const userUpdateCV = (data: ApiUserUpdateCV) => (dispatch: Dispatch<any>) => {
+  const accessToken = String(localStorage.getItem('accessToken'));
+
+  dispatch(userDataFetching());
+  fetch('/api/v1/cv/update_cv', {
+    method: 'PATCH',
+    headers: {
+      ...headersCors,
+      Authorization: accessToken,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      alert('Your data has been successfully updated');
+      dispatch(userGetInfo());
+      // dispatch(userOther());
+    })
+    .catch((error: Error) => {
+      dispatch(userDataFetchingError());
+      console.log('Error: ', error.message);
+    });
+};

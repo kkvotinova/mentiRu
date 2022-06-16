@@ -15,7 +15,7 @@ export function Layout() {
       dispatch(userLogIn());
       dispatch(userGetInfo());
     }
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
