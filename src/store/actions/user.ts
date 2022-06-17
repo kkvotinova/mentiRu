@@ -176,7 +176,33 @@ export const userUpdateCV = (data: ApiUserUpdateCV) => (dispatch: Dispatch<any>)
     .then(() => {
       alert('Your data has been successfully updated');
       dispatch(userGetInfo());
-      // dispatch(userOther());
+    })
+    .catch((error: Error) => {
+      dispatch(userDataFetchingError());
+      console.log('Error: ', error.message);
+    });
+};
+
+export const userCreateCV = (data: Omit<ApiUserUpdateCV, 'cv_id'>) => (dispatch: Dispatch<any>) => {
+  const accessToken = String(localStorage.getItem('accessToken'));
+
+  dispatch(userDataFetching());
+  fetch('/api/v1/cv/create_cv', {
+    method: 'POST',
+    headers: {
+      ...headersCors,
+      Authorization: accessToken,
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      alert('Your data has been successfully saved');
+      dispatch(userGetInfo());
     })
     .catch((error: Error) => {
       dispatch(userDataFetchingError());

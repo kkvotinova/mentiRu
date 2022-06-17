@@ -7,7 +7,9 @@ import styles from './profilepage.scss';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../../store';
-import { userGetInfo, userUpdateCV } from '../../store/actions/user';
+import { userCreateCV, userGetInfo, userUpdateCV } from '../../store/actions/user';
+import { getCategories } from '../../store/actions/categories';
+import { getSentBids, getUserBids } from '../../store/actions/bids';
 
 export function ProfilePage() {
   const {
@@ -21,6 +23,7 @@ export function ProfilePage() {
   const cvs = useSelector((state: IState) => state.user.userInfo.cvs);
   const userInfo = useSelector((state: IState) => state.user.userInfo);
   const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+  const categoriesList = useSelector((state: IState) => state.categories.categoriesList);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -52,14 +55,29 @@ export function ProfilePage() {
           }),
         );
       } else {
-        // TODO
+        alert('Please select from the list and enter the category of your resume');
+        const category = prompt(categoriesList.toString());
+
+        dispatch(
+          userCreateCV({
+            about: data.description,
+            experience: data.experience,
+            category: String(category),
+            job: data.work,
+            price: data.price,
+            skills: [...skillsGood, ...skillsAverage, ...skillsBad],
+          }),
+        );
       }
     },
-    [cvs, dispatch],
+    [categoriesList, cvs, dispatch],
   );
 
   useEffect(() => {
     dispatch(userGetInfo());
+    dispatch(getCategories());
+    dispatch(getUserBids());
+    dispatch(getSentBids());
   }, [dispatch]);
 
   return (

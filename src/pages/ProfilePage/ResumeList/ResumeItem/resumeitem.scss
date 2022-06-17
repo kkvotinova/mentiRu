@@ -31,6 +31,12 @@
   }
 }
 
+span.span {
+  cursor: default;
+  line-height: 32px;
+  color: $waiting-900;
+}
+
 .action {
   font-size: 0;
   text-align: end;

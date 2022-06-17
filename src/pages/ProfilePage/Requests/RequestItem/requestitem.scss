@@ -17,17 +17,23 @@
   }
 }
 
-.accept {
+.accept,
+.decline,
+.notSeen {
   padding: 6px 12px;
   border-radius: 16px;
+}
+.accept {
   color: $success-900;
   background-color: $success-100;
 }
 .decline {
-  padding: 6px 12px;
-  border-radius: 16px;
   color: $error-900;
   background-color: $error-100;
+}
+.notSeen {
+  color: $base-900;
+  background-color: $base-100;
 }
 
 .cancel {

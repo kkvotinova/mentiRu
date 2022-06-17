@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronIcon } from '../../icons';
 import { userLogOut } from '../../../store/actions/user';
@@ -15,10 +15,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { getFullName } from '../../../utils/format';
 
 export function AutoGroup() {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
-  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
+
+  const [isOpen, setIsOpen] = useState(false);
+
   const userInfo = useSelector((state: IState) => state.user.userInfo);
+  const userBids = useSelector((state: IState) => state.bids.userBids);
+
+  const userLoadingStatus = useSelector((state: IState) => state.user.userLoadingStatus);
   const isLoading = 'loading' === userLoadingStatus;
 
   const onLogout = useCallback(() => {
@@ -35,7 +39,7 @@ export function AutoGroup() {
       ) : (
         <Link to='/profile' className={styles.bell}>
           <img src={bell} alt='bell' />
-          {userInfo.cvs.length ? <span>{userInfo.cvs.length}</span> : null}
+          {userBids.length ? <span>{userBids.length}</span> : null}
         </Link>
       )}
       <button onClick={() => setIsOpen(!isOpen)} className={styles.user}>
