@@ -13,6 +13,7 @@ export interface FilterProps {
 
 export function Filter({ selectedItemName }: FilterProps) {
   const dispatch = useDispatch();
+
   const categories = useSelector((state: IState) => state.categories.categoriesList);
   const [list, setList] = useState(
     categories.map((item) => ({
@@ -77,7 +78,4 @@ export function Filter({ selectedItemName }: FilterProps) {
       <ul>{itemList}</ul>
     </div>
   );
-}
-function dispatch(arg0: any) {
-  throw new Error('Function not implemented.');
 }

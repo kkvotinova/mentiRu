@@ -48,7 +48,7 @@ export function MentorPage() {
       },
       {
         title: 'Received help',
-        desc: String(mentor.cv?.help_count),
+        desc: String(mentor.cv?.help_count || '0'),
       },
     ];
 
