@@ -25,10 +25,7 @@ export const getCategory = (data: CategoryFetchData) => (dispatch: Dispatch<any>
   fetch('/api/v1/cv/search_cv', {
     method: 'POST',
     headers: headersCors,
-    body: JSON.stringify({
-      filter: data.filter,
-      search_text: data.search_text,
-    }),
+    body: JSON.stringify(data),
   })
     .then((response: Response) => {
       if (!response.ok) {
