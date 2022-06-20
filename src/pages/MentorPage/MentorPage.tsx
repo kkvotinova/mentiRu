@@ -24,6 +24,7 @@ export function MentorPage() {
     formState: { errors },
     handleSubmit,
     clearErrors,
+    reset,
   } = useForm({ mode: 'onBlur' });
 
   const mentor = useSelector((state: IState) => state.mentor);
@@ -91,9 +92,10 @@ export function MentorPage() {
 
   useEffect(() => {
     if (mentor.loadingStatus === 'cool') {
+      reset();
       setShowModal(false);
     }
-  }, [mentor.loadingStatus]);
+  }, [mentor.loadingStatus, reset]);
 
   return (
     <>

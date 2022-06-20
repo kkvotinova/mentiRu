@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { App } from './App';
 import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 import store from './store';
+import './style/normalize.css';
 
 window.addEventListener('load', () => {
   ReactDOM.render(
@@ -16,6 +17,6 @@ window.addEventListener('load', () => {
         </BrowserRouter>
       </Provider>
     </React.StrictMode>,
-    document.getElementById('react_root')
+    document.getElementById('react_root'),
   );
 });

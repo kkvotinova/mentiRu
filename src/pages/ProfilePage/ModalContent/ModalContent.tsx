@@ -79,7 +79,7 @@ export function ModalContent({
       <li className={styles.item}>
         <label>Good</label>
         <input
-          {...register('competencyGood', { required: 'This field is required' })}
+          {...register('competencyGood')}
           placeholder='Java, Python, PHP'
           defaultValue={getCompetencies('good')}
         />
@@ -90,7 +90,7 @@ export function ModalContent({
       <li className={styles.item}>
         <label>Average</label>
         <input
-          {...register('competencyAverage', { required: 'This field is required' })}
+          {...register('competencyAverage')}
           placeholder='Java, Python, PHP'
           defaultValue={getCompetencies('average')}
         />
@@ -101,7 +101,7 @@ export function ModalContent({
       <li className={styles.item}>
         <label>Bad</label>
         <input
-          {...register('competencyBad', { required: 'This field is required' })}
+          {...register('competencyBad')}
           placeholder='Java, Python, PHP'
           defaultValue={getCompetencies('bad')}
         />

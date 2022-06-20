@@ -7,12 +7,15 @@ import { ICategoryState } from './reducers/category/type';
 import { categoryReducer } from './reducers/category';
 import { IMentorState } from './reducers/mentor/type';
 import { mentorReducer } from './reducers/mentor';
+import { IBidsState } from './reducers/bids/type';
+import { bidsReducer } from './reducers/bids';
 
 export interface IState {
   user: IUserState;
   categories: ICategoriesState;
   category: ICategoryState;
   mentor: IMentorState;
+  bids: IBidsState;
 }
 export const store = configureStore({
   reducer: {
@@ -20,6 +23,7 @@ export const store = configureStore({
     categories: categoriesReducer,
     category: categoryReducer,
     mentor: mentorReducer,
+    bids: bidsReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
