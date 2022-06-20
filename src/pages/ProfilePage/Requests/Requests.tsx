@@ -1,11 +1,24 @@
-import React, { useCallback, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../../../store';
+import { deleteBid, getSentBids } from '../../../store/actions/bids';
 import { RequestItem } from './RequestItem';
 import styles from './requests.scss';
 
 export function Requests() {
+  const dispatch = useDispatch();
   const sentBids = useSelector((state: IState) => state.bids.sentBids);
+
+  const onDeleteRequest = useCallback(
+    (id: string) => {
+      dispatch(deleteBid(id));
+    },
+    [dispatch],
+  );
+
+  useEffect(() => {
+    dispatch(getSentBids());
+  }, [dispatch]);
 
   const requestList = useMemo(
     () =>
@@ -16,9 +29,10 @@ export function Requests() {
           name={a.to_name}
           date={a.date_time_add}
           status={a.status}
+          deleteRequest={onDeleteRequest}
         />
       )),
-    [sentBids],
+    [onDeleteRequest, sentBids],
   );
 
   return (

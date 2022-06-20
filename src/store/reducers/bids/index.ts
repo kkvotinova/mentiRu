@@ -31,6 +31,11 @@ export const bidsReducer: Reducer = (state = initialState, action: IBidsAction):
         ...state,
         loadingStatus: 'error',
       };
+    case BidsActions.BIDS_FETCHED_OTHER:
+      return {
+        ...state,
+        loadingStatus: 'idle',
+      };
     default:
       return state;
   }

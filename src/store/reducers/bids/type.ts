@@ -1,4 +1,4 @@
-import { LoadingStatus } from '../../../utils/constants';
+import { LoadingStatus, ResumeStatus } from '../../../utils/constants';
 
 export interface IBidsState {
   loadingStatus: LoadingStatus;
@@ -10,13 +10,23 @@ export enum BidsActions {
   BIDS_FETCHING = 'BIDS_FETCHING',
   BIDS_FETCHED = 'BIDS_FETCHED',
   BIDS_FETCHED_PRO = 'BIDS_FETCHED_PRO',
+  BIDS_FETCHED_OTHER = 'BIDS_FETCHED_OTHER',
   BIDS_FETCHING_ERROR = 'BIDS_FETCHING_ERROR',
 }
 
-export type IBidsAction = IBidsFetching | IBidsFetched | IBidsFetchingError | IBidsFetchedPro;
+export type IBidsAction =
+  | IBidsFetching
+  | IBidsFetched
+  | IBidsFetchingError
+  | IBidsFetchedPro
+  | IBidsFetchedOther;
 
 export interface IBidsFetching {
   type: BidsActions.BIDS_FETCHING;
+}
+
+export interface IBidsFetchedOther {
+  type: BidsActions.BIDS_FETCHED_OTHER;
 }
 
 export interface IBidsFetched {
@@ -40,7 +50,12 @@ export interface BidsType {
   from_id: string;
   from_name: string;
   id_: string;
-  status: string;
+  status: ResumeStatus;
   to_id: string;
   to_name: string;
+}
+
+export interface ApiAnswerBid {
+  bid_id: string;
+  status: ResumeStatus;
 }

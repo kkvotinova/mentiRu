@@ -1,9 +1,11 @@
 import { Dispatch } from 'redux';
 import { headersCors } from '../../api';
 import {
+  ApiAnswerBid,
   BidsActions,
   BidsType,
   IBidsFetched,
+  IBidsFetchedOther,
   IBidsFetchedPro,
   IBidsFetching,
   IBidsFetchingError,
@@ -14,6 +16,9 @@ export const bidsFetching = (): IBidsFetching => ({
 });
 export const bidsFetchingError = (): IBidsFetchingError => ({
   type: BidsActions.BIDS_FETCHING_ERROR,
+});
+export const bidsFetchedOther = (): IBidsFetchedOther => ({
+  type: BidsActions.BIDS_FETCHED_OTHER,
 });
 export const bidsFetched = (payload: BidsType[]): IBidsFetched => ({
   type: BidsActions.BIDS_FETCHED,
@@ -63,6 +68,51 @@ export const getSentBids = () => (dispatch: Dispatch<any>) => {
     })
     .then((data) => {
       dispatch(bidsFetchedPro(data.bids));
+    })
+    .catch((error: Error) => {
+      dispatch(bidsFetchingError());
+      console.log(error.message);
+    });
+};
+
+export const deleteBid = (id: string) => (dispatch: Dispatch<any>) => {
+  const accessToken = String(localStorage.getItem('accessToken'));
+  dispatch(bidsFetching());
+
+  fetch(`/api/v1/bids/delete_bid?id_=${id}`, {
+    method: 'DELETE',
+    headers: { ...headersCors, Authorization: accessToken },
+  })
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      dispatch(getSentBids());
+    })
+    .catch((error: Error) => {
+      dispatch(bidsFetchingError());
+      console.log(error.message);
+    });
+};
+
+export const answerBid = (data: ApiAnswerBid) => (dispatch: Dispatch<any>) => {
+  const accessToken = String(localStorage.getItem('accessToken'));
+  dispatch(bidsFetching());
+
+  fetch('/api/v1/bids/answer_bid', {
+    method: 'POST',
+    headers: { ...headersCors, Authorization: accessToken },
+    body: JSON.stringify(data),
+  })
+    .then((response: Response) => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+    })
+    .then(() => {
+      dispatch(getUserBids());
     })
     .catch((error: Error) => {
       dispatch(bidsFetchingError());

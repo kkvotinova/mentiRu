@@ -6,13 +6,14 @@ import { IState } from '../../../../store';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { getFormattedDate } from '../../../../utils/format';
+import { ResumeStatus } from '../../../../utils/constants';
 
 interface IContentProps {
   id: string;
   name: string;
   desc: string;
   dateTime: number;
-  replyToResume: (id: string, status: 'accepted' | 'rejected') => void;
+  replyToResume: (id: string, status: ResumeStatus) => void;
 }
 
 export function ResumeItem({ name, desc, id, replyToResume, dateTime }: IContentProps) {
@@ -24,7 +25,7 @@ export function ResumeItem({ name, desc, id, replyToResume, dateTime }: IContent
   const date = getFormattedDate(dateTime, true);
 
   const handlRereplyToResume = useCallback(
-    (status: 'accepted' | 'rejected') => {
+    (status: ResumeStatus) => {
       replyToResume(id, status);
     },
     [replyToResume, id],
