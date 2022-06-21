@@ -23,7 +23,7 @@ export function MentorsList() {
           },
           {
             title: 'Received help',
-            desc: String(item.help_count),
+            desc: String(item.user.help_count || '0'),
           },
         ];
 

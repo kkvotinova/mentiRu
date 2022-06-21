@@ -44,7 +44,7 @@ export interface ICVSkills {
 
 export interface ICVUser {
   about_me: string;
-  date_time_add: 1655056227;
+  date_time_add: number;
   email: string;
   first_name: string;
   gender: string;
@@ -54,6 +54,7 @@ export interface ICVUser {
   middle_name: string;
   password: string;
   phone: string;
+  help_count: number;
   telegram_profile: string;
 }
 
@@ -64,7 +65,6 @@ export interface ICV {
   cv_times: [];
   date_time_add: string;
   experience: string;
-  help_count: number;
   id_: string;
   is_hidden: boolean;
   job: string;

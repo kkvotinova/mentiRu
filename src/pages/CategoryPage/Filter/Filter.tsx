@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '../../../store';
 import { withCapitalLetter } from '../../../utils/format';
 import { getCategories } from '../../../store/actions/categories';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export interface FilterProps {
   selectedItemName: string;
@@ -13,8 +14,11 @@ export interface FilterProps {
 
 export function Filter({ selectedItemName }: FilterProps) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const categories = useSelector((state: IState) => state.categories.categoriesList);
+
   const [list, setList] = useState(
     categories.map((item) => ({
       name: withCapitalLetter(item),
@@ -34,8 +38,16 @@ export function Filter({ selectedItemName }: FilterProps) {
           list.slice(index + 1, list.length),
         ),
       );
+
+      const filter = list.reduce((prev, next) => {
+        if (next.isMarked || next.name === name) {
+          return prev ? prev + '_' + next.name : next.name;
+        }
+        return prev;
+      }, '');
+      navigate(`/category/search?filter=${filter}`);
     },
-    [list],
+    [list, navigate],
   );
 
   const handleClearAll = useCallback(() => {
@@ -45,12 +57,37 @@ export function Filter({ selectedItemName }: FilterProps) {
         isMarked: false,
       })),
     );
-  }, [categories]);
+    navigate(`/category/search?filter=`);
+  }, [categories, navigate]);
 
   const itemList = useMemo(
     () => list.map((item, id) => <FilterItem key={id} item={item} onChangeList={onChangeList} />),
     [list, onChangeList],
   );
+
+  useEffect(() => {
+    const queryList = searchParams.get('filter')?.split('_');
+    if (!queryList) return;
+
+    const filterList = [...list];
+
+    for (let i = 0; i < queryList.length; i++) {
+      const queryItem = queryList[i];
+
+      for (const key in filterList) {
+        if (Object.prototype.hasOwnProperty.call(filterList, key)) {
+          const element = filterList[key];
+          if (element.name === queryItem) {
+            element.isMarked = true;
+            break;
+          }
+        }
+      }
+    }
+
+    setList(filterList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list.length]);
 
   useEffect(() => {
     dispatch(getCategories());
