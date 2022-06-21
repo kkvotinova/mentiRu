@@ -16,12 +16,19 @@ export function CategoryPage() {
   const [value, setValue] = useState('');
 
   const data: CategoryFetchData = useMemo(() => {
-    const categories = [params.id as string];
+    let categories = [params.id as string];
+    const search_text = searchParams.get('text') || '';
+
+    const queryFilter = searchParams.get('filter');
+    if (queryFilter) {
+      categories = queryFilter.toLowerCase().split('_');
+    }
+
     return {
       filter: {
-        categories: categories[0] === 'search' ? [] : categories,
+        categories: queryFilter || params.id !== 'search' ? categories : [],
       },
-      search_text: searchParams.get('text') || '',
+      search_text,
     };
   }, [params.id, searchParams]);
 
